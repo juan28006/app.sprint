@@ -5,18 +5,13 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "User")
+@Table(name = "TypeUser")
 @Getter
 @Setter
-public class User {
+public class TypeUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
-    private String password;
-
-    @ManyToOne
-    @JoinColumn(name = "type_user_id", nullable = false)
-    private TypeUser typeUser;
+    private String type; // "Admin", "Empleado", "Cliente"
 }

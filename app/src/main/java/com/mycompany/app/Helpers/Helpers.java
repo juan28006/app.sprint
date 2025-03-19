@@ -8,24 +8,24 @@ package com.mycompany.app.Helpers;
  *
  * @author CLAUDIA
  */
-import com.mycompany.app.Dto.GuestDTO;
-import com.mycompany.app.Dto.InvoiceDTO;
-import com.mycompany.app.Dto.InvoiceDetailDTO;
-import com.mycompany.app.Dto.PersonDTO;
-import com.mycompany.app.Dto.UserDTO;
-import com.mycompany.app.Dto.PartnerDTO;
+import com.mycompany.app.Dto.MachineryDTO;
+import com.mycompany.app.Dto.MachineryDTO;
+import com.mycompany.app.Dto.InventoryDTO;
+import com.mycompany.app.Dto.ReportDTO;
+import com.mycompany.app.Dto.ReservationDTO;
+import com.mycompany.app.Dto.PermissionDTO;
 import com.mycompany.app.model.Guest;
-import com.mycompany.app.model.Invoice;
-import com.mycompany.app.model.InvoiceDetail;
-import com.mycompany.app.model.Person;
-import com.mycompany.app.model.User;
-import com.mycompany.app.model.Partner;
+import com.mycompany.app.model.machinery;
+import com.mycompany.app.model.Permis;
+import com.mycompany.app.model.user;
+import com.mycompany.app.model.TypeUser;
+import com.mycompany.app.model.Report;
 import java.sql.Date;
 
 public abstract class Helpers {
-    public static PersonDTO parse(Person person) {
-       
-        PersonDTO personDto = new PersonDTO();
+    public static ReportDTO parse(user person) {
+
+        ReportDTO personDto = new ReportDTO();
         personDto.setId(person.getId());
         personDto.setDocument(person.getDocument());
         personDto.setName(person.getName());
@@ -33,9 +33,9 @@ public abstract class Helpers {
         return personDto;
     }
 
-    public static Person parse(PersonDTO personDto) {
-       
-        Person person = new Person();
+    public static user parse(ReportDTO personDto) {
+
+        user person = new user();
         person.setId(personDto.getId());
         person.setDocument(personDto.getDocument());
         person.setName(personDto.getName());
@@ -43,11 +43,11 @@ public abstract class Helpers {
         return person;
     }
 
-     public static UserDTO parse(User user) {
+    public static ReservationDTO parse(TypeUser user) {
         if (user == null) {
             return null;
         }
-        UserDTO userDto = new UserDTO();
+        ReservationDTO userDto = new ReservationDTO();
         userDto.setId(user.getId());
         userDto.setPassword(user.getPassword());
         userDto.setPersonId(parse(user.getPersonId()));
@@ -56,11 +56,11 @@ public abstract class Helpers {
         return userDto;
     }
 
-    public static User parse(UserDTO userDto) {
+    public static TypeUser parse(ReservationDTO userDto) {
         if (userDto == null) {
             return null;
         }
-        User user = new User();
+        TypeUser user = new TypeUser();
         user.setId(userDto.getId());
         user.setPassword(userDto.getPassword());
         user.setPersonId(parse(userDto.getPersonId()));
@@ -69,11 +69,11 @@ public abstract class Helpers {
         return user;
     }
 
-    public static InvoiceDTO parse(Invoice invoice) {
+    public static MachineryDTO parse(machinery invoice) {
         if (invoice == null) {
             return null;
         }
-        InvoiceDTO invoiceDto = new InvoiceDTO();
+        MachineryDTO invoiceDto = new MachineryDTO();
         invoiceDto.setId(invoice.getId());
         invoiceDto.setPersonId(parse(invoice.getPersonId()));
         invoiceDto.setPartnerId(parse(invoice.getPartnerId()));
@@ -83,11 +83,11 @@ public abstract class Helpers {
         return invoiceDto;
     }
 
-    public static Invoice parse(InvoiceDTO invoiceDto) {
+    public static machinery parse(MachineryDTO invoiceDto) {
         if (invoiceDto == null) {
             return null;
         }
-        Invoice invoice = new Invoice();
+        machinery invoice = new machinery();
         invoice.setId(invoiceDto.getId());
         invoice.setPersonId(parse(invoiceDto.getPersonId()));
         invoice.setPartnerId(parse(invoiceDto.getPartnerId()));
@@ -98,11 +98,11 @@ public abstract class Helpers {
     }
 
     // InvoiceDetail and InvoiceDetailDTO
-    public static InvoiceDetailDTO parse(InvoiceDetail invoiceDetail) {
+    public static InventoryDTO parse(Permis invoiceDetail) {
         if (invoiceDetail == null) {
             return null;
         }
-        InvoiceDetailDTO detailDto = new InvoiceDetailDTO();
+        InventoryDTO detailDto = new InventoryDTO();
         detailDto.setId(invoiceDetail.getId());
         detailDto.setInvoiceId(parse(invoiceDetail.getInvoiceId()));
         detailDto.setItem(invoiceDetail.getItem());
@@ -111,11 +111,11 @@ public abstract class Helpers {
         return detailDto;
     }
 
-    public static InvoiceDetail parse(InvoiceDetailDTO detailDto) {
+    public static Permis parse(InventoryDTO detailDto) {
         if (detailDto == null) {
             return null;
         }
-        InvoiceDetail detail = new InvoiceDetail();
+        Permis detail = new Permis();
         detail.setId(detailDto.getId());
         detail.setInvoiceId(parse(detailDto.getInvoiceId()));
         detail.setItem(detailDto.getItem());
@@ -125,41 +125,41 @@ public abstract class Helpers {
     }
 
     // Partner and PartnerDTO
-    public static PartnerDTO parse(Partner partner) {
+    public static PermissionDTO parse(Report partner) {
         if (partner == null) {
             return null;
         }
-       
-        PartnerDTO partnerDto = new PartnerDTO();
+
+        PermissionDTO partnerDto = new PermissionDTO();
         partnerDto.setId(partner.getId());
         partnerDto.setUserId(parse(partner.getUserId()));
         partnerDto.setfundsMoney(partner.getFundsMoney());
         partnerDto.setDateCreated(partner.getDateCreated());
-       partnerDto.setTypeSuscription(partner.getTypeSuscription());
-      
+        partnerDto.setTypeSuscription(partner.getTypeSuscription());
+
         return partnerDto;
     }
-    public static Partner parse(PartnerDTO partnerDto) {
+
+    public static Report parse(PermissionDTO partnerDto) {
         if (partnerDto == null) {
             return null;
         }
-        
-        Partner partner = new Partner();
+
+        Report partner = new Report();
         partner.setId(partnerDto.getId());
         partner.setUserId(parse(partnerDto.getUserId()));
         partner.setFundsMoney(partnerDto.getfundsMoney());
         partner.setDateCreated(partnerDto.getDateCreated());
-        partner.setTypeSuscription( partnerDto.getTypeSuscription());
-       
-    
-      
+        partner.setTypeSuscription(partnerDto.getTypeSuscription());
+
         return partner;
     }
-    public static GuestDTO parse(Guest guest) {
+
+    public static MachineryDTO parse(Guest guest) {
         if (guest == null) {
             return null;
         }
-        GuestDTO guestDto = new GuestDTO();
+        MachineryDTO guestDto = new MachineryDTO();
         guestDto.setId(guest.getId());
         guestDto.setUserId(parse(guest.getUserId()));
         guestDto.setPartnerId(parse(guest.getPartnerId()));
@@ -167,7 +167,7 @@ public abstract class Helpers {
         return guestDto;
     }
 
-    public static Guest parse(GuestDTO guestDto) {
+    public static Guest parse(MachineryDTO guestDto) {
         if (guestDto == null) {
             return null;
         }

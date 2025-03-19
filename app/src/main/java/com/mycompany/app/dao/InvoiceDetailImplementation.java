@@ -1,11 +1,11 @@
 package com.mycompany.app.dao;
 
-import com.mycompany.app.Dto.InvoiceDetailDTO;
+import com.mycompany.app.Dto.InventoryDTO;
 import com.mycompany.app.dao.interfaces.InvoiceDetailDao;
 
 import com.mycompany.app.Helpers.Helpers;
 import com.mycompany.app.dao.repositories.InvoiceDetailRepository;
-import com.mycompany.app.model.InvoiceDetail;
+import com.mycompany.app.model.Permis;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.Getter;
@@ -25,14 +25,14 @@ public class InvoiceDetailImplementation implements InvoiceDetailDao {
     InvoiceDetailRepository invoiceDetailRepository;
 
     @Override
-    public void createInvoiceDetail(InvoiceDetailDTO detailDto) throws Exception {
-        InvoiceDetail detail = Helpers.parse(detailDto);
+    public void createInvoiceDetail(InventoryDTO detailDto) throws Exception {
+        Permis detail = Helpers.parse(detailDto);
         invoiceDetailRepository.save(detail);
     }
 
     @Override
-    public InvoiceDetailDTO findInvoiceDetailById(long id) throws Exception {
-        InvoiceDetail detail = invoiceDetailRepository.findInvoiceDetailById(id);
+    public InventoryDTO findInvoiceDetailById(long id) throws Exception {
+        Permis detail = invoiceDetailRepository.findInvoiceDetailById(id);
         if (detail == null) {
             throw new Exception("Detalle de factura no encontrado con id: " + id);
         }
@@ -40,25 +40,25 @@ public class InvoiceDetailImplementation implements InvoiceDetailDao {
     }
 
     @Override
-    public List<InvoiceDetailDTO> findInvoiceDetailsByInvoiceId(long invoiceId) throws Exception {
-        List<InvoiceDetail> details = invoiceDetailRepository.findByInvoiceId_Id(invoiceId);
+    public List<InventoryDTO> findInvoiceDetailsByInvoiceId(long invoiceId) throws Exception {
+        List<Permis> details = invoiceDetailRepository.findByInvoiceId_Id(invoiceId);
         if (details.isEmpty()) {
             throw new Exception("No se encontraron detalles de factura para el ID de factura: " + invoiceId);
         }
 
-        List<InvoiceDetailDTO> detailDTOs = new ArrayList<>();
-        for (InvoiceDetail detail : details) {
+        List<InventoryDTO> detailDTOs = new ArrayList<>();
+        for (Permis detail : details) {
             detailDTOs.add(Helpers.parse(detail));
         }
         return detailDTOs;
     }
 
     @Override
-    public void updateInvoiceDetail(InvoiceDetailDTO detailDto) throws Exception {
+    public void updateInvoiceDetail(InventoryDTO detailDto) throws Exception {
         if (!invoiceDetailRepository.existsById(detailDto.getId())) {
             throw new Exception("Detalle de factura no encontrado con id: " + detailDto.getId());
         }
-        InvoiceDetail detail = Helpers.parse(detailDto);
+        Permis detail = Helpers.parse(detailDto);
         invoiceDetailRepository.save(detail);
     }
 
@@ -70,23 +70,24 @@ public class InvoiceDetailImplementation implements InvoiceDetailDao {
         invoiceDetailRepository.deleteById(id);
     }
 
-    /* private InvoiceDetail mapResultSetToInvoiceDetail(ResultSet rs) throws SQLException {
-        InvoiceDetail detail = new InvoiceDetail();
-        detail.setId(rs.getLong("ID"));
-
-        Invoice invoice = new Invoice();
-        invoice.setId(rs.getLong("INVOICEID"));
-        detail.setInvoiceId(invoice);
-
-        detail.setItem(rs.getInt("ITEM"));
-        detail.setDescription(rs.getString("DESCRIPTION"));
-        detail.setAmount(rs.getDouble("AMOUNT"));
-        return detail;
-    }
+    /*
+     * private InvoiceDetail mapResultSetToInvoiceDetail(ResultSet rs) throws
+     * SQLException {
+     * InvoiceDetail detail = new InvoiceDetail();
+     * detail.setId(rs.getLong("ID"));
+     * 
+     * Invoice invoice = new Invoice();
+     * invoice.setId(rs.getLong("INVOICEID"));
+     * detail.setInvoiceId(invoice);
+     * 
+     * detail.setItem(rs.getInt("ITEM"));
+     * detail.setDescription(rs.getString("DESCRIPTION"));
+     * detail.setAmount(rs.getDouble("AMOUNT"));
+     * return detail;
+     * }
      */
 }
-// select busca 
+// select busca
 // insertar
 // update buscar
-// delete eliminiar 
-
+// delete eliminiar

@@ -83,6 +83,14 @@ document.addEventListener("DOMContentLoaded", function () {
         if (status === "En reparación") return "warning";
         return "danger";
     }
+    // Cerrar sesión
+    const logoutButton = document.getElementById("logout");
+    if (logoutButton) {
+        logoutButton.addEventListener("click", function () {
+            localStorage.removeItem("loggedInUser");
+            window.location.href = "Registro.html";
+        });
+    }
 
     // Resetear formulario cuando se cierra el modal
     addProductModalElement.addEventListener("hidden.bs.modal", function () {

@@ -1,9 +1,21 @@
 /* styles.css: Estilos modernos y atractivos */
 
 body {
-    background: #1e1e1e;
+    background-image: url(images/image.png);
+        /* background: #0d0e0d; */
     color: #ffffff;
     font-family: 'Poppins', sans-serif;
+    background-size: cover;/* La imagen cubre todo el fondo */
+    background-position: center;
+    background-repeat: no-repeat;/* Evita que la imagen se repita */
+    margin: 0;/* Elimina el margen predeterminado del body */
+    padding: 0;/* Elimina el padding predeterminado del body */
+    line-height: 1.6; /* Espaciado entre líneas para mejor legibilidad */
+    min-height: 100vh;/* Asegura que el body ocupe al menos el 100% del viewport */
+    flex-direction: column;/* Organiza el contenido en columna */
+    align-items: center; /* Centra el contenido horizontalmente */
+    text-align: center; /* Alinea el texto al centro */
+    
 }
 
 /* Contenedor principal */

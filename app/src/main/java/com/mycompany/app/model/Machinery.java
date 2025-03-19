@@ -5,18 +5,18 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "User")
+@Table(name = "Machinery")
 @Getter
 @Setter
-public class User {
+public class Machinery {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
-    private String password;
+    private String status; // "Operativa", "En Mantenimiento", "Dañada"
 
     @ManyToOne
-    @JoinColumn(name = "type_user_id", nullable = false)
-    private TypeUser typeUser;
+    @JoinColumn(name = "inventory_id", nullable = false)
+    private Inventory inventory;
 }

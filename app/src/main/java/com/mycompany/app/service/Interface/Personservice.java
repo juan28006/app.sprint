@@ -4,7 +4,7 @@
  */
 package com.mycompany.app.service.Interface;
 
-import com.mycompany.app.Dto.PersonDTO;
+import com.mycompany.app.Dto.ReportDTO;
 
 /**
  *
@@ -12,6 +12,6 @@ import com.mycompany.app.Dto.PersonDTO;
  */
 public interface Personservice {
 
-    public void createPerson(PersonDTO personDto) throws Exception;
-    
+    public void createPerson(ReportDTO personDto) throws Exception;
+
 }

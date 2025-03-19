@@ -4,7 +4,7 @@
  */
 package com.mycompany.app.dao.repositories;
 
-import com.mycompany.app.model.Person;
+import com.mycompany.app.model.user;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -17,11 +17,11 @@ con la base de datos, ya que  permite realizar consultas y operaciones
 sin escribir sql directamente
 */
 @Repository
-public interface PersonRepository extends JpaRepository<Person, Long> {
+public interface PersonRepository extends JpaRepository<user, Long> {
     //Person es una entidad que define unas propiedades
     // Y EL LONG ESPECIFICA EL TIPO DE CLAVE PRIMARIA DE LA ENTIDAD
 
-    public Person findByDocument(Long document);
+    public user findByDocument(Long document);
 
     public boolean existsByDocument(Long document);
 

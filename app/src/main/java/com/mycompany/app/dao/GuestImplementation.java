@@ -10,8 +10,8 @@ package com.mycompany.app.dao;
  *
  */
 import com.mycompany.app.dao.interfaces.GuestDao;
-import com.mycompany.app.Dto.GuestDTO;
-import com.mycompany.app.Dto.InvoiceDTO;
+import com.mycompany.app.Dto.MachineryDTO;
+import com.mycompany.app.Dto.MachineryDTO;
 import com.mycompany.app.Helpers.Helpers;
 import com.mycompany.app.dao.repositories.GuestRepository;
 import com.mycompany.app.dao.repositories.InvoiceRepository;
@@ -41,7 +41,7 @@ public class GuestImplementation implements GuestDao {
     private InvoiceRepository invoiceRepository;
 
     @Override
-    public void createGuest(GuestDTO guestDTO) throws Exception {
+    public void createGuest(MachineryDTO guestDTO) throws Exception {
         if (guestDTO == null) {
             throw new Exception("El GuestDTO no puede ser nulo");
         }
@@ -51,7 +51,7 @@ public class GuestImplementation implements GuestDao {
     }
 
     @Override
-    public List<InvoiceDTO> getGuestPendingInvoices(long guestId) throws Exception {
+    public List<MachineryDTO> getGuestPendingInvoices(long guestId) throws Exception {
         if (guestId <= 0) {
             throw new Exception("ID de invitado inválido: " + guestId);
         }
@@ -68,8 +68,7 @@ public class GuestImplementation implements GuestDao {
 
         // Obtener las facturas usando el ID de la persona asociada al usuario
         List<Invoice> pendingInvoices = invoiceRepository.findByPersonId_IdAndStatusFalse(
-                guest.getUserId().getPersonId().getId()
-        );
+                guest.getUserId().getPersonId().getId());
 
         return pendingInvoices.stream()
                 .map(Helpers::parse)
@@ -77,7 +76,7 @@ public class GuestImplementation implements GuestDao {
     }
 
     @Override
-    public List<InvoiceDTO> getGuestPaidInvoices(long guestId) throws Exception {
+    public List<MachineryDTO> getGuestPaidInvoices(long guestId) throws Exception {
         if (guestId <= 0) {
             throw new Exception("ID de invitado inválido: " + guestId);
         }
@@ -94,8 +93,7 @@ public class GuestImplementation implements GuestDao {
 
         // Obtener las facturas pagadas usando el ID de la persona
         List<Invoice> paidInvoices = invoiceRepository.findByPersonId_IdAndStatusTrue(
-                guest.getUserId().getPersonId().getId()
-        );
+                guest.getUserId().getPersonId().getId());
 
         return paidInvoices.stream()
                 .map(Helpers::parse)
@@ -103,7 +101,7 @@ public class GuestImplementation implements GuestDao {
     }
 
     @Override
-    public GuestDTO findGuestById(long guestId) throws Exception {
+    public MachineryDTO findGuestById(long guestId) throws Exception {
         if (guestId <= 0) {
             throw new Exception("ID de invitado inválido: " + guestId);
         }
@@ -116,7 +114,7 @@ public class GuestImplementation implements GuestDao {
     }
 
     @Override
-    public void updateGuest(GuestDTO guestDTO) throws Exception {
+    public void updateGuest(MachineryDTO guestDTO) throws Exception {
         if (guestDTO == null || guestDTO.getId() <= 0) {
             throw new Exception("GuestDTO inválido o ID no especificado");
         }
@@ -145,13 +143,13 @@ public class GuestImplementation implements GuestDao {
     }
 
     @Override
-    public List<GuestDTO> findGuestsByPartnerId(long partnerId) throws Exception {
+    public List<MachineryDTO> findGuestsByPartnerId(long partnerId) throws Exception {
         if (partnerId <= 0) {
             throw new Exception("ID de socio inválido: " + partnerId);
         }
 
         List<Guest> guests = guestRepository.findByPartnerId_Id(partnerId);
-        List<GuestDTO> guestDTOs = new ArrayList<>();
+        List<MachineryDTO> guestDTOs = new ArrayList<>();
         for (Guest guest : guests) {
             guestDTOs.add(Helpers.parse(guest));
         }
@@ -159,7 +157,7 @@ public class GuestImplementation implements GuestDao {
     }
 
     @Override
-    public GuestDTO findGuestByUserId(long userId) throws Exception {
+    public MachineryDTO findGuestByUserId(long userId) throws Exception {
         if (userId <= 0) {
             throw new Exception("ID de usuario inválido: " + userId);
         }
@@ -172,12 +170,11 @@ public class GuestImplementation implements GuestDao {
             return Helpers.parse(optionalGuest.get());
         } catch (Exception e) {
             // Log del error para debugging
-            throw new Exception( e.getMessage());
+            throw new Exception(e.getMessage());
         }
     }
 }
-// select busca 
+// select busca
 // insertar
 // update buscar
-// delete eliminiar 
-
+// delete eliminiar

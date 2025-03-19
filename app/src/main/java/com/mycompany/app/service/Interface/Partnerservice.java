@@ -8,23 +8,23 @@ package com.mycompany.app.service.Interface;
  *
  * @author CLAUDIA
  */
-import com.mycompany.app.Dto.GuestDTO;
-import com.mycompany.app.Dto.PartnerDTO;
-import com.mycompany.app.Dto.InvoiceDTO;
-import com.mycompany.app.Dto.InvoiceDetailDTO;
-import com.mycompany.app.Dto.PersonDTO;
-import com.mycompany.app.Dto.UserDTO;
+import com.mycompany.app.Dto.MachineryDTO;
+import com.mycompany.app.Dto.PermissionDTO;
+import com.mycompany.app.Dto.MachineryDTO;
+import com.mycompany.app.Dto.InventoryDTO;
+import com.mycompany.app.Dto.ReportDTO;
+import com.mycompany.app.Dto.ReservationDTO;
 import java.util.List;
 
 public interface Partnerservice {
 
     public void lowPartner(long partnerId) throws Exception;
 
-    public PartnerDTO findPartnerByUserId(long userId) throws Exception;
+    public PermissionDTO findPartnerByUserId(long userId) throws Exception;
 
-    public PartnerDTO findPartnerById(long partnerId) throws Exception;
+    public PermissionDTO findPartnerById(long partnerId) throws Exception;
 
-    public void createInvoicePartner(InvoiceDTO invoiceDto, List<InvoiceDetailDTO> details) throws Exception;
+    public void createInvoicePartner(MachineryDTO invoiceDto, List<InventoryDTO> details) throws Exception;
 
     public void uploadFunds(long userId, double amount) throws Exception;
 
@@ -34,10 +34,10 @@ public interface Partnerservice {
 
     public void activateGuest(long guestId, long partnerId) throws Exception;
 
-    public List<InvoiceDTO> getPartnerInvoices(long partnerId) throws Exception;
+    public List<MachineryDTO> getPartnerInvoices(long partnerId) throws Exception;
 
     public void payInvoices(long userId) throws Exception;
 
-    public void createGuest(GuestDTO guestDto) throws Exception;
+    public void createGuest(MachineryDTO guestDto) throws Exception;
 
 }

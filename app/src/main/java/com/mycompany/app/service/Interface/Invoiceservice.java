@@ -4,8 +4,8 @@
  */
 package com.mycompany.app.service.Interface;
 
-import com.mycompany.app.Dto.InvoiceDTO;
-import com.mycompany.app.Dto.InvoiceDetailDTO;
+import com.mycompany.app.Dto.MachineryDTO;
+import com.mycompany.app.Dto.InventoryDTO;
 import java.util.List;
 
 /**
@@ -14,7 +14,6 @@ import java.util.List;
  */
 public interface Invoiceservice {
 
-    public void createInvoiceDetails(InvoiceDTO invoiceDto, List<InvoiceDetailDTO> details) throws Exception;
-
+    public void createInvoiceDetails(MachineryDTO invoiceDto, List<InventoryDTO> details) throws Exception;
 
 }

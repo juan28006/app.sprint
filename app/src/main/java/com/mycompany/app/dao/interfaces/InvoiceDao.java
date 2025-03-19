@@ -8,33 +8,33 @@ package com.mycompany.app.dao.interfaces;
  *
  * @author CLAUDIA
  */
-import com.mycompany.app.Dto.InvoiceDTO;
+import com.mycompany.app.Dto.MachineryDTO;
 import java.util.List;
 
 public interface InvoiceDao {
 
-    public void createInvoice(InvoiceDTO invoiceDto) throws Exception;
+    public void createInvoice(MachineryDTO invoiceDto) throws Exception;
 
-    public List<InvoiceDTO> getInvoicesPartner(long partnerId) throws Exception;
+    public List<MachineryDTO> getInvoicesPartner(long partnerId) throws Exception;
 
     public void payInvoices(long partnerId) throws Exception;
 
-    public List<InvoiceDTO> getInvoicesByGuestId(long guestId) throws Exception;
+    public List<MachineryDTO> getInvoicesByGuestId(long guestId) throws Exception;
 
-    public InvoiceDTO findInvoiceById(long invoiceId) throws Exception;
+    public MachineryDTO findInvoiceById(long invoiceId) throws Exception;
 
-    public void updateInvoice(InvoiceDTO invoiceDto) throws Exception;
+    public void updateInvoice(MachineryDTO invoiceDto) throws Exception;
 
-    public List<InvoiceDTO> getInvoicesByStatus(boolean status) throws Exception;
+    public List<MachineryDTO> getInvoicesByStatus(boolean status) throws Exception;
 
     public void deleteAllInvoicesByPartnerId(long id) throws Exception;
 
-    public List<InvoiceDTO> UnpaidInvoicesPartner(long partnerId) throws Exception;
+    public List<MachineryDTO> UnpaidInvoicesPartner(long partnerId) throws Exception;
 
     public void deleteAllInvoicesByGuestId(long id) throws Exception;
 
-    public List<InvoiceDTO> UnpaidInvoicesGuest(long id) throws Exception;
+    public List<MachineryDTO> UnpaidInvoicesGuest(long id) throws Exception;
 
-    public long createAllInvoices(InvoiceDTO invoiceDto) throws Exception;
+    public long createAllInvoices(MachineryDTO invoiceDto) throws Exception;
 
 }

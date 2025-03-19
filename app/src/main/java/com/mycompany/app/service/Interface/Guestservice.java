@@ -4,10 +4,10 @@
  */
 package com.mycompany.app.service.Interface;
 
-import com.mycompany.app.Dto.GuestDTO;
-import com.mycompany.app.Dto.InvoiceDTO;
-import com.mycompany.app.Dto.InvoiceDetailDTO;
-import com.mycompany.app.Dto.UserDTO;
+import com.mycompany.app.Dto.MachineryDTO;
+import com.mycompany.app.Dto.MachineryDTO;
+import com.mycompany.app.Dto.InventoryDTO;
+import com.mycompany.app.Dto.ReservationDTO;
 import java.util.List;
 
 /**
@@ -16,11 +16,11 @@ import java.util.List;
  */
 public interface Guestservice {
 
-    public GuestDTO findGuestByUserId(long userId) throws Exception;
+    public MachineryDTO findGuestByUserId(long userId) throws Exception;
 
     public void convertGuestToPartner(long userId) throws Exception;
 
-    public void createInvoiceGuest(InvoiceDTO invoiceDto, List<InvoiceDetailDTO> details) throws Exception;
+    public void createInvoiceGuest(MachineryDTO invoiceDto, List<InventoryDTO> details) throws Exception;
 
     // Verificar si el invitado existe
 }

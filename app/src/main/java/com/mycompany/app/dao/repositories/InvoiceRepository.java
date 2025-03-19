@@ -4,7 +4,7 @@
  */
 package com.mycompany.app.dao.repositories;
 
-import com.mycompany.app.Dto.InvoiceDTO;
+import com.mycompany.app.Dto.MachineryDTO;
 import com.mycompany.app.model.Guest;
 import com.mycompany.app.model.Invoice;
 import com.mycompany.app.model.Partner;
@@ -42,6 +42,5 @@ public interface InvoiceRepository extends JpaRepository<Invoice, Long> {
     List<Invoice> findByPersonId_Id(Long personId);
 
     public List<Invoice> findByPartnerId_IdAndStatusFalse(long partnerId);
-    
 
 }

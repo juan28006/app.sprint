@@ -4,10 +4,10 @@
  */
 package com.mycompany.app.service.Interface;
 
-import com.mycompany.app.Dto.InvoiceDTO;
-import com.mycompany.app.Dto.PartnerDTO;
-import com.mycompany.app.Dto.PersonDTO;
-import com.mycompany.app.Dto.UserDTO;
+import com.mycompany.app.Dto.MachineryDTO;
+import com.mycompany.app.Dto.PermissionDTO;
+import com.mycompany.app.Dto.ReportDTO;
+import com.mycompany.app.Dto.ReservationDTO;
 import java.util.List;
 
 /**
@@ -16,36 +16,36 @@ import java.util.List;
  */
 public interface Adminservice {
 
-    public void createPartner(UserDTO userDTO, PersonDTO personDTO) throws Exception;
+    public void createPartner(ReservationDTO userDTO, ReportDTO personDTO) throws Exception;
 
-    public List<PartnerDTO> getPendingVIPRequests() throws Exception;
+    public List<PermissionDTO> getPendingVIPRequests() throws Exception;
 
     public double getTotalPaidInvoices(long id) throws Exception;
 
-    List<InvoiceDTO> getPartnerInvoices(long partnerId) throws Exception;
+    List<MachineryDTO> getPartnerInvoices(long partnerId) throws Exception;
 
-    public List<InvoiceDTO> getGuestPendingInvoice(long guestId) throws Exception;
+    public List<MachineryDTO> getGuestPendingInvoice(long guestId) throws Exception;
 
-    public List<InvoiceDTO> getGuestPaidInvoices(long guestId) throws Exception;
+    public List<MachineryDTO> getGuestPaidInvoices(long guestId) throws Exception;
 
-    public List<InvoiceDTO> getGuestInvoices(long guestId) throws Exception;
+    public List<MachineryDTO> getGuestInvoices(long guestId) throws Exception;
 
-    public void requestVIPSubscription(UserDTO userDto) throws Exception;
+    public void requestVIPSubscription(ReservationDTO userDto) throws Exception;
 
-    public void createInvoice(InvoiceDTO invoiceDto) throws Exception;
+    public void createInvoice(MachineryDTO invoiceDto) throws Exception;
 
     public void approveVIPRequest(long partnerId) throws Exception;
 
     public void rejectVIPRequest(long partnerId) throws Exception;
 
-    public List<InvoiceDTO> PaidInvoices(long partnerId) throws Exception;
+    public List<MachineryDTO> PaidInvoices(long partnerId) throws Exception;
 
-    public List<InvoiceDTO> getPendingInvoices(long partnerId) throws Exception;
+    public List<MachineryDTO> getPendingInvoices(long partnerId) throws Exception;
 
     public double getTotalInvoicesAmount(long partnerId) throws Exception;
 
-    public List<InvoiceDTO> getPaidInvoices(long partnerId) throws Exception;
+    public List<MachineryDTO> getPaidInvoices(long partnerId) throws Exception;
 
-    public List<InvoiceDTO> getAllInvoices(long userId) throws Exception;
+    public List<MachineryDTO> getAllInvoices(long userId) throws Exception;
 
 }

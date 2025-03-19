@@ -4,7 +4,7 @@
  */
 package com.mycompany.app.Controller.Request;
 
-import com.mycompany.app.Dto.PersonDTO;
+import com.mycompany.app.Dto.ReportDTO;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,6 +20,5 @@ public class ManagementFundsRequest {
 
     private Long userId;
     private Double amount;
-  
 
 }

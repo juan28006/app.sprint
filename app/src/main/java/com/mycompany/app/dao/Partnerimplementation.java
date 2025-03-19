@@ -6,18 +6,18 @@ package com.mycompany.app.dao;
 
 import java.util.ArrayList;
 import java.util.List;
-import com.mycompany.app.Dto.PartnerDTO;
-import com.mycompany.app.Dto.UserDTO;
+import com.mycompany.app.Dto.PermissionDTO;
+import com.mycompany.app.Dto.ReservationDTO;
 import com.mycompany.app.dao.interfaces.PartnerDao;
-import com.mycompany.app.Dto.InvoiceDTO;
+import com.mycompany.app.Dto.MachineryDTO;
 import com.mycompany.app.Helpers.Helpers;
 import com.mycompany.app.dao.repositories.GuestRepository;
 import com.mycompany.app.dao.repositories.InvoiceRepository;
 import com.mycompany.app.dao.repositories.PartnerRepository;
 import com.mycompany.app.model.Guest;
-import com.mycompany.app.model.Invoice;
-import com.mycompany.app.model.Partner;
-import com.mycompany.app.model.User;
+import com.mycompany.app.model.machinery;
+import com.mycompany.app.model.Report;
+import com.mycompany.app.model.TypeUser;
 import java.sql.Date;
 import java.util.Optional;
 import lombok.Getter;
@@ -35,16 +35,16 @@ public class Partnerimplementation implements PartnerDao {
 
     @Autowired
     GuestRepository guestRepository;
-    
+
     @Autowired
     InvoiceRepository invoiceRepository;
-    
+
     @Autowired
     PartnerRepository partnerRepository;
 
     @Override
-    public void createPartner(PartnerDTO partnerDTO, UserDTO userDTO) throws Exception {
-        Partner partner = new Partner();
+    public void createPartner(PermissionDTO partnerDTO, ReservationDTO userDTO) throws Exception {
+        Report partner = new Report();
         partner.setUserId(Helpers.parse(userDTO));
         partner.setFundsMoney(50000); // Initial fund for regular partners
         partner.setTypeSuscription("regular");
@@ -55,21 +55,22 @@ public class Partnerimplementation implements PartnerDao {
     }
 
     @Override
-    public void PartnerFunds(PartnerDTO partnerDto) throws Exception {
-        //Esta línea busca al socio en la base de datos utilizando su ID.
-        //El resultado se almacena en una variable llamada optionalPartner de tipo Optional<Partner>.
-        Optional<Partner> optionalPartner = partnerRepository.findById(partnerDto.getId());
+    public void PartnerFunds(PermissionDTO partnerDto) throws Exception {
+        // Esta línea busca al socio en la base de datos utilizando su ID.
+        // El resultado se almacena en una variable llamada optionalPartner de tipo
+        // Optional<Partner>.
+        Optional<Report> optionalPartner = partnerRepository.findById(partnerDto.getId());
         if (!optionalPartner.isPresent()) {
             throw new Exception("Partner no encontrado con ID: " + partnerDto.getId());
         }
-        // si la condicion se cumple 
-        Partner partner = optionalPartner.get();
+        // si la condicion se cumple
+        Report partner = optionalPartner.get();
         partner.setFundsMoney(partnerDto.getfundsMoney());
         partnerRepository.save(partner);
     }
 
     @Override
-    public void updatePartner(PartnerDTO partnerDto) throws Exception {
+    public void updatePartner(PermissionDTO partnerDto) throws Exception {
         if (!partnerRepository.existsById(partnerDto.getId())) {
             throw new Exception("Partner no encontrado con el id : " + partnerDto.getId());
         }
@@ -79,7 +80,7 @@ public class Partnerimplementation implements PartnerDao {
             throw new Exception("El tipo de suscripción no puede estar vacío");
         }
 
-        Partner partner = Helpers.parse(partnerDto);
+        Report partner = Helpers.parse(partnerDto);
 
         // Verificar que todos los campos requeridos estén establecidos
         if (partner.getTypeSuscription() == null || partner.getUserId() == null || partner.getDateCreated() == null) {
@@ -90,12 +91,12 @@ public class Partnerimplementation implements PartnerDao {
     }
 
     @Override
-    public PartnerDTO findPartnerByUserId(long userId) throws Exception {
+    public PermissionDTO findPartnerByUserId(long userId) throws Exception {
         System.out.println("  buscando socio con el ID del usuario   " + userId);
         // me busca por medio del userid el id del socio
-        //para hacer la baja o soliitar promocion
+        // para hacer la baja o soliitar promocion
 
-        Optional<Partner> optionalPartner = partnerRepository.findByUserId_Id(userId);
+        Optional<Report> optionalPartner = partnerRepository.findByUserId_Id(userId);
         if (optionalPartner.isPresent()) {
             System.out.println("Socio encontrado con ID: " + optionalPartner.get().getId());
             return Helpers.parse(optionalPartner.get());
@@ -106,10 +107,10 @@ public class Partnerimplementation implements PartnerDao {
     }
 
     @Override
-    public PartnerDTO findPartnerById(long partnerId) throws Exception {
-        // Metodo que realiza en la service el  proceso de las reglas de negocio
-        // y verifica si cumple o no cumple  con estas reglas
-        Optional<Partner> optionalPartner = partnerRepository.findById(partnerId);
+    public PermissionDTO findPartnerById(long partnerId) throws Exception {
+        // Metodo que realiza en la service el proceso de las reglas de negocio
+        // y verifica si cumple o no cumple con estas reglas
+        Optional<Report> optionalPartner = partnerRepository.findById(partnerId);
         if (optionalPartner.isPresent()) {
             System.out.println("Socio encontrado con ID: " + partnerId);
             return Helpers.parse(optionalPartner.get());
@@ -121,37 +122,38 @@ public class Partnerimplementation implements PartnerDao {
 
     @Override
     public void lowPartner(long partnerId) throws Exception {
-        Optional<Partner> optionalPartner = partnerRepository.findById(partnerId);
+        Optional<Report> optionalPartner = partnerRepository.findById(partnerId);
         if (!optionalPartner.isPresent()) {
             throw new Exception("Socio no encontrado con id: " + partnerId);
         }
 
-        Partner partner = optionalPartner.get();
+        Report partner = optionalPartner.get();
 
-        // Aquí puedes agregar lógica adicional si es necesario, como verificar facturas pendientes
+        // Aquí puedes agregar lógica adicional si es necesario, como verificar facturas
+        // pendientes
         partnerRepository.delete(partner);
         System.out.println("Socio con ID " + partnerId + " ha sido dado de baja exitosamente.");
     }
 
-    //Revisar si hay  ranuras VIP disponibles
+    // Revisar si hay ranuras VIP disponibles
     @Override
     public boolean isVIPSlotAvailable() throws Exception {
         long vipCount = partnerRepository.countByTypeSuscription("VIP");
         return vipCount < 5;
     }
-    //obtener Solicitudes VIP Pendientes
+    // obtener Solicitudes VIP Pendientes
 
     @Override
-    public List<PartnerDTO> getPendingVIPRequests() throws Exception {
-        List<Partner> pendingPartners = partnerRepository.findByTypeSuscription("vip_pendiente");
-        List<PartnerDTO> pendingRequests = new ArrayList<>();
+    public List<PermissionDTO> getPendingVIPRequests() throws Exception {
+        List<Report> pendingPartners = partnerRepository.findByTypeSuscription("vip_pendiente");
+        List<PermissionDTO> pendingRequests = new ArrayList<>();
 
-        for (Partner partner : pendingPartners) {
-            PartnerDTO partnerDTO = Helpers.parse(partner);
+        for (Report partner : pendingPartners) {
+            PermissionDTO partnerDTO = Helpers.parse(partner);
 
-            User user = partner.getUserId();
+            TypeUser user = partner.getUserId();
             if (user != null) {
-                UserDTO userDTO = Helpers.parse(user);
+                ReservationDTO userDTO = Helpers.parse(user);
                 partnerDTO.setUserId(userDTO);
             }
             pendingRequests.add(partnerDTO);
@@ -160,18 +162,20 @@ public class Partnerimplementation implements PartnerDao {
         return pendingRequests;
     }
 
-    /* @Override
-    public PartnerDTO findPartnerByUserId(long userId) throws Exception {
-
-        Optional<Partner> optionalPartner = partnerRepository.findByUserId_Id(userId);
-        if (optionalPartner.isPresent()) {
-            System.out.println("Socio encontrado: " + optionalPartner.get().getId());
-            return Helpers.parse(optionalPartner.get());
-        } else {
-
-            throw new Exception("Socio no encontrado para el ID de usuario: " + userId);
-        }
-    }
+    /*
+     * @Override
+     * public PartnerDTO findPartnerByUserId(long userId) throws Exception {
+     * 
+     * Optional<Partner> optionalPartner =
+     * partnerRepository.findByUserId_Id(userId);
+     * if (optionalPartner.isPresent()) {
+     * System.out.println("Socio encontrado: " + optionalPartner.get().getId());
+     * return Helpers.parse(optionalPartner.get());
+     * } else {
+     * 
+     * throw new Exception("Socio no encontrado para el ID de usuario: " + userId);
+     * }
+     * }
      */
     @Override
     public void deletePartner(long partnerId) throws Exception {
@@ -181,16 +185,16 @@ public class Partnerimplementation implements PartnerDao {
         partnerRepository.deleteById(partnerId);
     }
 
-    //  obtener facturas pendientes 
+    // obtener facturas pendientes
     @Override
-    public List<InvoiceDTO> getPendingInvoices(long partnerId) throws Exception {
-        Optional<Partner> optionalPartner = partnerRepository.findById(partnerId);
+    public List<MachineryDTO> getPendingInvoices(long partnerId) throws Exception {
+        Optional<Report> optionalPartner = partnerRepository.findById(partnerId);
         if (optionalPartner.isPresent()) {
-            Partner partner = optionalPartner.get();
-            List<Invoice> pendingInvoices = invoiceRepository.findByPartnerIdAndStatus(partner, false);
-            List<InvoiceDTO> pendingInvoiceDTOs = new ArrayList<>();
-            for (Invoice invoice : pendingInvoices) {
-                InvoiceDTO invoiceDTO = Helpers.parse(invoice);
+            Report partner = optionalPartner.get();
+            List<machinery> pendingInvoices = invoiceRepository.findByPartnerIdAndStatus(partner, false);
+            List<MachineryDTO> pendingInvoiceDTOs = new ArrayList<>();
+            for (machinery invoice : pendingInvoices) {
+                MachineryDTO invoiceDTO = Helpers.parse(invoice);
                 pendingInvoiceDTOs.add(invoiceDTO);
             }
             return pendingInvoiceDTOs;
@@ -199,12 +203,12 @@ public class Partnerimplementation implements PartnerDao {
         }
     }
 
-    //Solicitud de promoción VIP
+    // Solicitud de promoción VIP
     @Override
     public void requestVIPPromotion(long partnerId) throws Exception {
-        Optional<Partner> optionalPartner = partnerRepository.findById(partnerId);
+        Optional<Report> optionalPartner = partnerRepository.findById(partnerId);
         if (optionalPartner.isPresent()) {
-            Partner partner = optionalPartner.get();
+            Report partner = optionalPartner.get();
             partner.setTypeSuscription("vip_pendiente ");
             partner.setDateCreated(new Date(System.currentTimeMillis()));
             partnerRepository.save(partner);
@@ -215,9 +219,9 @@ public class Partnerimplementation implements PartnerDao {
 
     @Override
     public void uploadFunds(long partnerId, double amount) throws Exception {
-        Optional<Partner> optionalPartner = partnerRepository.findById(partnerId);
+        Optional<Report> optionalPartner = partnerRepository.findById(partnerId);
         if (optionalPartner.isPresent()) {
-            Partner partner = optionalPartner.get();
+            Report partner = optionalPartner.get();
             partner.setFundsMoney(partner.getFundsMoney() + amount);
             partnerRepository.save(partner);
         } else {
@@ -228,9 +232,9 @@ public class Partnerimplementation implements PartnerDao {
 
     @Override
     public void updatePartnerSubscription(long partnerId, String newType) throws Exception {
-        Optional<Partner> optionalPartner = partnerRepository.findById(partnerId);
+        Optional<Report> optionalPartner = partnerRepository.findById(partnerId);
         if (optionalPartner.isPresent()) {
-            Partner partner = optionalPartner.get();
+            Report partner = optionalPartner.get();
             partner.setTypeSuscription(newType);
             partnerRepository.save(partner);
         } else {
@@ -240,9 +244,9 @@ public class Partnerimplementation implements PartnerDao {
 
     @Override
     public void payInvoice(long invoiceId) throws Exception {
-        Optional<Invoice> optionalInvoice = invoiceRepository.findById(invoiceId);
+        Optional<machinery> optionalInvoice = invoiceRepository.findById(invoiceId);
         if (optionalInvoice.isPresent()) {
-            Invoice invoice = optionalInvoice.get();
+            machinery invoice = optionalInvoice.get();
             invoice.setStatus(true);
             invoiceRepository.save(invoice);
         } else {
@@ -251,16 +255,16 @@ public class Partnerimplementation implements PartnerDao {
         }
     }
 
-    //Obtener facturas pagadas
+    // Obtener facturas pagadas
     @Override
-    public List<InvoiceDTO> getPaidInvoices(long partnerId) throws Exception {
-        Optional<Partner> optionalPartner = partnerRepository.findById(partnerId);
+    public List<MachineryDTO> getPaidInvoices(long partnerId) throws Exception {
+        Optional<Report> optionalPartner = partnerRepository.findById(partnerId);
         if (optionalPartner.isPresent()) {
-            Partner partner = optionalPartner.get();
-            List<Invoice> paidInvoices = invoiceRepository.findByPartnerIdAndStatus(partner, true);
-            List<InvoiceDTO> paidInvoiceDTOs = new ArrayList<>();
-            for (Invoice invoice : paidInvoices) {
-                InvoiceDTO invoiceDTO = Helpers.parse(invoice);
+            Report partner = optionalPartner.get();
+            List<machinery> paidInvoices = invoiceRepository.findByPartnerIdAndStatus(partner, true);
+            List<MachineryDTO> paidInvoiceDTOs = new ArrayList<>();
+            for (machinery invoice : paidInvoices) {
+                MachineryDTO invoiceDTO = Helpers.parse(invoice);
                 paidInvoiceDTOs.add(invoiceDTO);
             }
             return paidInvoiceDTOs;
@@ -285,12 +289,12 @@ public class Partnerimplementation implements PartnerDao {
     }
 
     @Override
-    //Solicitud de promoción
+    // Solicitud de promoción
 
     public void requestPromotion(long userId) throws Exception {
-        Optional<Partner> optionalPartner = partnerRepository.findByUserId_Id(userId);
+        Optional<Report> optionalPartner = partnerRepository.findByUserId_Id(userId);
         if (optionalPartner.isPresent()) {
-            Partner partner = optionalPartner.get();
+            Report partner = optionalPartner.get();
             if ("vip".equalsIgnoreCase(partner.getTypeSuscription())) {
                 throw new Exception("El socio ya tiene una suscripción VIP");
             }

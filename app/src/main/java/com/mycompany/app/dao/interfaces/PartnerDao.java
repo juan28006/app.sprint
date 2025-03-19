@@ -4,11 +4,11 @@
  */
 package com.mycompany.app.dao.interfaces;
 
-import com.mycompany.app.Dto.InvoiceDTO;
+import com.mycompany.app.Dto.MachineryDTO;
 
-import com.mycompany.app.Dto.PartnerDTO;
+import com.mycompany.app.Dto.PermissionDTO;
 
-import com.mycompany.app.Dto.UserDTO;
+import com.mycompany.app.Dto.ReservationDTO;
 
 import java.util.List;
 
@@ -18,27 +18,27 @@ import java.util.List;
  */
 public interface PartnerDao {
 
-    // crear un partner que ya existe 
-    public void createPartner(PartnerDTO partnerDTO, UserDTO userDTO) throws Exception;
+    // crear un partner que ya existe
+    public void createPartner(PermissionDTO partnerDTO, ReservationDTO userDTO) throws Exception;
 
-    public void PartnerFunds(PartnerDTO partnerDto) throws Exception;
+    public void PartnerFunds(PermissionDTO partnerDto) throws Exception;
 
-    public void updatePartner(PartnerDTO partner) throws Exception;
+    public void updatePartner(PermissionDTO partner) throws Exception;
 
-    public List<InvoiceDTO> getPendingInvoices(long id) throws Exception;
+    public List<MachineryDTO> getPendingInvoices(long id) throws Exception;
 
     public void payInvoice(long id) throws Exception;
 
-    public List<InvoiceDTO> getPaidInvoices(long partnerId) throws Exception;
+    public List<MachineryDTO> getPaidInvoices(long partnerId) throws Exception;
 
-    public PartnerDTO findPartnerById(long partnerId) throws Exception;
+    public PermissionDTO findPartnerById(long partnerId) throws Exception;
 
     public boolean isVIPSlotAvailable() throws Exception;
 
-    //   obtener Solicitudes VIP Pendientes
-    public List<PartnerDTO> getPendingVIPRequests() throws Exception;
+    // obtener Solicitudes VIP Pendientes
+    public List<PermissionDTO> getPendingVIPRequests() throws Exception;
 
-    public PartnerDTO findPartnerByUserId(long id) throws Exception;
+    public PermissionDTO findPartnerByUserId(long id) throws Exception;
 
     public void activateGuest(long guestId) throws Exception;
 
@@ -53,7 +53,7 @@ public interface PartnerDao {
     public void uploadFunds(long partnerId, double amount) throws Exception;
 
     public void updatePartnerSubscription(long partnerId, String newType) throws Exception;
-    //Conjunto de resultados del mapa para PartnerDTO
+    // Conjunto de resultados del mapa para PartnerDTO
 
     public void deletePartner(long partnerId) throws Exception;
 

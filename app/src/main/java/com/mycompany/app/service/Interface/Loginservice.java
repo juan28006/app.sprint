@@ -4,7 +4,7 @@
  */
 package com.mycompany.app.service.Interface;
 
-import com.mycompany.app.Dto.UserDTO;
+import com.mycompany.app.Dto.ReservationDTO;
 
 /**
  *
@@ -12,7 +12,7 @@ import com.mycompany.app.Dto.UserDTO;
  */
 public interface Loginservice {
 
-     public void login(UserDTO userDto) throws Exception;
+    public void login(ReservationDTO userDto) throws Exception;
 
     public void logout();
 

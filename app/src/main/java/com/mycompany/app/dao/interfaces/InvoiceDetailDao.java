@@ -4,7 +4,7 @@
  */
 package com.mycompany.app.dao.interfaces;
 
-import com.mycompany.app.Dto.InvoiceDetailDTO;
+import com.mycompany.app.Dto.InventoryDTO;
 import java.util.List;
 
 /**
@@ -13,13 +13,13 @@ import java.util.List;
  */
 public interface InvoiceDetailDao {
 
-    public void createInvoiceDetail(InvoiceDetailDTO detail) throws Exception;
+    public void createInvoiceDetail(InventoryDTO detail) throws Exception;
 
-    InvoiceDetailDTO findInvoiceDetailById(long id) throws Exception;
+    InventoryDTO findInvoiceDetailById(long id) throws Exception;
 
-    List<InvoiceDetailDTO> findInvoiceDetailsByInvoiceId(long invoiceId) throws Exception;
+    List<InventoryDTO> findInvoiceDetailsByInvoiceId(long invoiceId) throws Exception;
 
-    public void updateInvoiceDetail(InvoiceDetailDTO detail) throws Exception;
+    public void updateInvoiceDetail(InventoryDTO detail) throws Exception;
 
     public void deleteInvoiceDetail(long id) throws Exception;
 

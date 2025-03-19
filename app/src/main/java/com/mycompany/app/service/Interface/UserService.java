@@ -4,14 +4,13 @@
  */
 package com.mycompany.app.service.Interface;
 
-import com.mycompany.app.Dto.UserDTO;
+import com.mycompany.app.Dto.ReservationDTO;
 
 /**
  *
  * @author CLAUDIA
  */
 public interface UserService {
-    public void  createUser(UserDTO userDTO) throws Exception;
+    public void createUser(ReservationDTO userDTO) throws Exception;
 
-    
 }

@@ -9,7 +9,7 @@ package com.mycompany.app.dao;
  * @author CLAUDIA
  */
 import com.mycompany.app.model.Invoice;
-import com.mycompany.app.Dto.InvoiceDTO;
+import com.mycompany.app.Dto.MachineryDTO;
 import com.mycompany.app.dao.interfaces.InvoiceDao;
 import com.mycompany.app.Helpers.Helpers;
 import com.mycompany.app.dao.repositories.InvoiceRepository;
@@ -32,33 +32,34 @@ public class Invoiceimplementation implements InvoiceDao {
 
     @Autowired
     InvoiceRepository invoiceRepository;
-    
+
     @Autowired
     PartnerRepository partnerRepository;
 
     @Override
-    public void createInvoice(InvoiceDTO invoiceDto) throws Exception {
+    public void createInvoice(MachineryDTO invoiceDto) throws Exception {
         Invoice invoice = Helpers.parse(invoiceDto);
         invoiceRepository.save(invoice);
     }
 
     @Override
-    public long createAllInvoices(InvoiceDTO invoiceDto) throws Exception {
+    public long createAllInvoices(MachineryDTO invoiceDto) throws Exception {
         Invoice invoice = Helpers.parse(invoiceDto);
         Invoice savedInvoice = invoiceRepository.save(invoice);
         return savedInvoice.getId();
     }
 
     @Override
-    // el metodo devuelve una lista de objetos  invoiceDTO
-    // recibe un  parametro de tipo long partenerid
-    
-    public List<InvoiceDTO> getInvoicesPartner(long partnerId) throws Exception {
-        //creo una variable de tipo lista con un ibjeto invoices donde a esta variable 
-        //por medio de un invoices repository me va a buscar las facturas que le pertenecen 
-        //al id del socio que se busca
+    // el metodo devuelve una lista de objetos invoiceDTO
+    // recibe un parametro de tipo long partenerid
+
+    public List<MachineryDTO> getInvoicesPartner(long partnerId) throws Exception {
+        // creo una variable de tipo lista con un ibjeto invoices donde a esta variable
+        // por medio de un invoices repository me va a buscar las facturas que le
+        // pertenecen
+        // al id del socio que se busca
         List<Invoice> invoices = invoiceRepository.findByPartnerId_Id(partnerId);
-        List<InvoiceDTO> invoiceDTOs = new ArrayList<>();
+        List<MachineryDTO> invoiceDTOs = new ArrayList<>();
         for (Invoice invoice : invoices) {
             invoiceDTOs.add(Helpers.parse(invoice));
         }
@@ -66,18 +67,17 @@ public class Invoiceimplementation implements InvoiceDao {
     }
 
     @Override
-    public List<InvoiceDTO> getInvoicesByGuestId(long guestId) throws Exception {
+    public List<MachineryDTO> getInvoicesByGuestId(long guestId) throws Exception {
         List<Invoice> invoices = invoiceRepository.findByPersonId_Id(guestId);
-        List<InvoiceDTO> invoiceDTOs = new ArrayList<>();
+        List<MachineryDTO> invoiceDTOs = new ArrayList<>();
         for (Invoice invoice : invoices) {
             invoiceDTOs.add(Helpers.parse(invoice));
         }
         return invoiceDTOs;
     }
-    
 
     @Override
-    public InvoiceDTO findInvoiceById(long invoiceId) throws Exception {
+    public MachineryDTO findInvoiceById(long invoiceId) throws Exception {
         Optional<Invoice> optionalInvoice = invoiceRepository.findById(invoiceId);
         if (optionalInvoice.isPresent()) {
             return Helpers.parse(optionalInvoice.get());
@@ -87,9 +87,9 @@ public class Invoiceimplementation implements InvoiceDao {
     }
 
     @Override
-    //actualizar Factura
+    // actualizar Factura
 
-    public void updateInvoice(InvoiceDTO invoiceDto) throws Exception {
+    public void updateInvoice(MachineryDTO invoiceDto) throws Exception {
         if (!invoiceRepository.existsById(invoiceDto.getId())) {
             throw new Exception("Invoice no encontrado con ID: " + invoiceDto.getId());
         }
@@ -98,9 +98,9 @@ public class Invoiceimplementation implements InvoiceDao {
     }
 
     @Override
-    public List<InvoiceDTO> getInvoicesByStatus(boolean status) throws Exception {
+    public List<MachineryDTO> getInvoicesByStatus(boolean status) throws Exception {
         List<Invoice> invoices = invoiceRepository.findByStatus(status);
-        List<InvoiceDTO> invoiceDTOs = new ArrayList<>();
+        List<MachineryDTO> invoiceDTOs = new ArrayList<>();
         for (Invoice invoice : invoices) {
             invoiceDTOs.add(Helpers.parse(invoice));
         }
@@ -110,7 +110,7 @@ public class Invoiceimplementation implements InvoiceDao {
     @Override
     public void deleteAllInvoicesByPartnerId(long partnerId) throws Exception {
         List<Invoice> invoices = invoiceRepository.findByPartnerId_Id(partnerId);
-        // se implementa  la validación que lanza excepción si no hay facturas
+        // se implementa la validación que lanza excepción si no hay facturas
         // Si no hay facturas, simplemente no hacemos nada
         if (!invoices.isEmpty()) {
             invoiceRepository.deleteAll(invoices);
@@ -118,20 +118,20 @@ public class Invoiceimplementation implements InvoiceDao {
     }
 
     @Override
-    public List<InvoiceDTO> UnpaidInvoicesPartner(long partnerId) throws Exception {
+    public List<MachineryDTO> UnpaidInvoicesPartner(long partnerId) throws Exception {
         List<Invoice> unpaidInvoices = invoiceRepository.findByPartnerId_IdAndStatusFalse(partnerId);
-        List<InvoiceDTO> unpaidInvoiceDTOs = new ArrayList<>();
+        List<MachineryDTO> unpaidInvoiceDTOs = new ArrayList<>();
         for (Invoice invoice : unpaidInvoices) {
             unpaidInvoiceDTOs.add(Helpers.parse(invoice));
         }
         return unpaidInvoiceDTOs;
     }
 
-    //Facturas no pagadas Invitado
+    // Facturas no pagadas Invitado
     @Override
-    public List<InvoiceDTO> UnpaidInvoicesGuest(long guestId) throws Exception {
+    public List<MachineryDTO> UnpaidInvoicesGuest(long guestId) throws Exception {
         List<Invoice> unpaidInvoices = invoiceRepository.findByPersonId_IdAndStatusFalse(guestId);
-        List<InvoiceDTO> unpaidInvoiceDTOs = new ArrayList<>();
+        List<MachineryDTO> unpaidInvoiceDTOs = new ArrayList<>();
         for (Invoice invoice : unpaidInvoices) {
             unpaidInvoiceDTOs.add(Helpers.parse(invoice));
         }
@@ -182,30 +182,30 @@ public class Invoiceimplementation implements InvoiceDao {
     }
 
     // Helper method to map ResultSet to Invoice object (unchanged)
-    /* private Invoice mapResultSetToInvoice(ResultSet rs) throws SQLException {
-        Invoice invoice = new Invoice();
-        invoice.setId(rs.getLong("ID"));
-
-        Person person = new Person();
-        person.setId(rs.getLong("PERSONID"));
-        invoice.setPersonId(person);
-
-        Partner partner = new Partner();
-        partner.setId(rs.getLong("PARTNERID"));
-        invoice.setPartnerId(partner);
-
-        invoice.setCreationDate(new Date(System.currentTimeMillis()));
-        invoice.setAmount(rs.getDouble("AMOUNT"));
-        invoice.setStatus("PAID".equals(rs.getString("STATUS")));
-
-        return invoice;
-    
-}
+    /*
+     * private Invoice mapResultSetToInvoice(ResultSet rs) throws SQLException {
+     * Invoice invoice = new Invoice();
+     * invoice.setId(rs.getLong("ID"));
+     * 
+     * Person person = new Person();
+     * person.setId(rs.getLong("PERSONID"));
+     * invoice.setPersonId(person);
+     * 
+     * Partner partner = new Partner();
+     * partner.setId(rs.getLong("PARTNERID"));
+     * invoice.setPartnerId(partner);
+     * 
+     * invoice.setCreationDate(new Date(System.currentTimeMillis()));
+     * invoice.setAmount(rs.getDouble("AMOUNT"));
+     * invoice.setStatus("PAID".equals(rs.getString("STATUS")));
+     * 
+     * return invoice;
+     * 
+     * }
      */
 }
 
-// select busca 
+// select busca
 // insertar
 // update buscar
-// delete eliminiar 
-
+// delete eliminiar
