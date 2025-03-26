@@ -18,14 +18,11 @@ body {
     
 }
 
-/* Contenedor principal */
-.container {
-    max-width: 1000px;
-    margin-top: 20px;
-    padding: 20px;
-    background: #2c3e50;
-    border-radius: 15px;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+
+.logo{
+    height: 150px; /* Ajusta la altura según necesites */
+    width: auto;  /* Mantiene la proporción */
+    margin-right: 10px; /* Espacio entre la imagen y el texto */
 }
 
 /* Barra de navegación */
@@ -41,7 +38,7 @@ body {
 }
 .navbar a {
     color: white !important;
-    font-size: 1.2rem;
+    font-size: 30px;
 }
 
 /* Botones */
@@ -62,7 +59,7 @@ body {
     border: none;
 }
 .btn-success {
-    background: #2ecc71;
+    background: #3498db;
     color: white;
     border: none;
 }
@@ -73,12 +70,9 @@ body {
 
 /* Tarjetas */
 .card {
-    border: none;
-    border-radius: 15px;
-    box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.2);
-    padding: 20px;
-    background: #2c3e50;
-    color: white;
+    background: transparent !important; /* Hace el fondo transparente */
+    box-shadow: none !important; /* Elimina la sombra */
+    border: none !important; /* Elimina los bordes */
 }
 
 /* Tablas */
@@ -111,10 +105,10 @@ body {
 /* Formularios */
 .form-control, .form-select {
     border-radius: 10px;
-    border: 1px solid #bbb;
+    border: 2px solid white !important; /* Agrega un borde blanco */
     padding: 10px;
-    background: #f0f0f0;
-    color: #000;
+    background: transparent !important; /* Hace el fondo transparente */
+    color: white !important; /* Mantiene el texto en blanco */
 }
 
 /* Pie de página */
@@ -125,4 +119,31 @@ body {
     color: white;
     background: #000000;
     border-radius: 0 0 15px 15px;
+}
+
+/* Asegurar que los placeholders sean visibles */
+::placeholder {
+    color: white !important; /* Hace que el texto del placeholder sea blanco */
+    opacity: 1; /* Asegura que el color blanco sea visible */
+}
+
+/* Cambiar estilos al escribir en el input */
+.form-control:focus {
+    background: transparent !important;
+    color: white !important;
+    border-color: #3498db !important; /* Borde azul al seleccionar */
+    box-shadow: none !important; /* Elimina sombras */
+}
+
+.form-control {
+    color: white !important; /* Hace que el texto dentro del input sea blanco */
+}
+
+h2, /* Si "Iniciar Sesión" es un h2 */
+h3, /* Si "Correo Electrónico" y "Contraseña" son h3 */
+h4, /* Por si acaso otro nivel de encabezado */
+label, 
+p, 
+a {
+    color: white !important;
 }
