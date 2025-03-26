@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class UserValidator extends CommonsValidator {
-
     public void validateUser(UserDTO userDTO) {
         if (userDTO.getName() == null || userDTO.getName().isEmpty()) {
             throw new IllegalArgumentException("El nombre del usuario no puede estar vacío");

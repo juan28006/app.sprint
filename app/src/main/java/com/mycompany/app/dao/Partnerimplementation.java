@@ -8,12 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 import com.mycompany.app.Dto.PermissionDTO;
 import com.mycompany.app.Dto.ReservationDTO;
-import com.mycompany.app.dao.interfaces.PartnerDao;
+import com.mycompany.app.dao.interfaces.TypeUserDao;
 import com.mycompany.app.Dto.MachineryDTO;
 import com.mycompany.app.Helpers.Helpers;
 import com.mycompany.app.dao.repositories.GuestRepository;
 import com.mycompany.app.dao.repositories.InvoiceRepository;
-import com.mycompany.app.dao.repositories.PartnerRepository;
+import com.mycompany.app.dao.repositories.InventoryRepository;
 import com.mycompany.app.model.Guest;
 import com.mycompany.app.model.machinery;
 import com.mycompany.app.model.Report;
@@ -31,7 +31,7 @@ import org.springframework.stereotype.Service;
 @Setter
 @Getter
 
-public class Partnerimplementation implements PartnerDao {
+public class Partnerimplementation implements TypeUserDao {
 
     @Autowired
     GuestRepository guestRepository;
@@ -40,7 +40,7 @@ public class Partnerimplementation implements PartnerDao {
     InvoiceRepository invoiceRepository;
 
     @Autowired
-    PartnerRepository partnerRepository;
+    InventoryRepository partnerRepository;
 
     @Override
     public void createPartner(PermissionDTO partnerDTO, ReservationDTO userDTO) throws Exception {

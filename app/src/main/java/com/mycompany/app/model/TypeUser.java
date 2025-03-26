@@ -11,6 +11,7 @@ import lombok.Setter;
 public class TypeUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
 
     private String type; // "Admin", "Empleado", "Cliente"

@@ -10,10 +10,10 @@ package com.mycompany.app.dao;
  */
 import com.mycompany.app.model.Invoice;
 import com.mycompany.app.Dto.MachineryDTO;
-import com.mycompany.app.dao.interfaces.InvoiceDao;
+import com.mycompany.app.dao.interfaces.ReportDao;
 import com.mycompany.app.Helpers.Helpers;
 import com.mycompany.app.dao.repositories.InvoiceRepository;
-import com.mycompany.app.dao.repositories.PartnerRepository;
+import com.mycompany.app.dao.repositories.InventoryRepository;
 import com.mycompany.app.model.Partner;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,13 +28,13 @@ import org.springframework.stereotype.Service;
 @NoArgsConstructor
 @Setter
 @Getter
-public class Invoiceimplementation implements InvoiceDao {
+public class Invoiceimplementation implements ReportDao {
 
     @Autowired
     InvoiceRepository invoiceRepository;
 
     @Autowired
-    PartnerRepository partnerRepository;
+    InventoryRepository partnerRepository;
 
     @Override
     public void createInvoice(MachineryDTO invoiceDto) throws Exception {

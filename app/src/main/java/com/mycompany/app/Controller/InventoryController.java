@@ -1,16 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mycompany.app.Controller;
 
 import com.mycompany.app.Dto.InventoryDTO;
-import com.mycompany.app.service.InventoryService;
+import com.mycompany.app.service.Interface.InventoryS;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -18,34 +12,35 @@ import java.util.List;
 public class InventoryController {
 
     @Autowired
-    private InventoryService inventoryService;
+    private InventoryS inventoryS;
 
     @GetMapping
-    public List<InventoryDTO> getAllInventory() {
-        return inventoryService.getAllInventory();
+    public List<InventoryDTO> getAllInventory() throws Exception {
+        return inventoryS.getAllInventory();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<InventoryDTO> getInventoryById(@PathVariable Long id) {
-        InventoryDTO inventoryDTO = inventoryService.getInventoryById(id);
+    public ResponseEntity<InventoryDTO> getInventoryById(@PathVariable Long id) throws Exception {
+        InventoryDTO inventoryDTO = inventoryS.getInventoryById(id);
         return ResponseEntity.ok(inventoryDTO);
     }
 
     @PostMapping
-    public ResponseEntity<InventoryDTO> createInventory(@RequestBody InventoryDTO inventoryDTO) {
-        InventoryDTO createdInventory = inventoryService.createInventory(inventoryDTO);
+    public ResponseEntity<InventoryDTO> createInventory(@RequestBody InventoryDTO inventoryDTO) throws Exception {
+        InventoryDTO createdInventory = inventoryS.createInventory(inventoryDTO);
         return ResponseEntity.ok(createdInventory);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<InventoryDTO> updateInventory(@PathVariable Long id, @RequestBody InventoryDTO inventoryDTO) {
-        InventoryDTO updatedInventory = inventoryService.updateInventory(id, inventoryDTO);
+    public ResponseEntity<InventoryDTO> updateInventory(@PathVariable Long id,
+            @RequestBody InventoryDTO inventoryDTO) throws Exception {
+        InventoryDTO updatedInventory = inventoryS.updateInventory(id, inventoryDTO);
         return ResponseEntity.ok(updatedInventory);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteInventory(@PathVariable Long id) {
-        inventoryService.deleteInventory(id);
+    public ResponseEntity<Void> deleteInventory(@PathVariable Long id) throws Exception {
+        inventoryS.deleteInventory(id);
         return ResponseEntity.noContent().build();
     }
 }

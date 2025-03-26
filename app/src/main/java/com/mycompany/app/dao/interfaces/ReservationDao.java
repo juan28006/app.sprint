@@ -1,15 +1,18 @@
 package com.mycompany.app.dao.interfaces;
 
-import com.mycompany.app.Dto.ReportDTO;
+import com.mycompany.app.Dto.ReservationDTO;
+import java.util.List;
 
 public interface ReservationDao {
 
-    public boolean existsByDocument(ReportDTO personDto) throws Exception;
+    List<ReservationDTO> getAllReservations() throws Exception;
 
-    public void createPerson(ReportDTO personDTo) throws Exception;
+    ReservationDTO getReservationById(Long id) throws Exception;
 
-    public void deletePerson(ReportDTO personDto) throws Exception;
+    ReservationDTO createReservation(ReservationDTO reservationDTO) throws Exception;
 
-    public ReportDTO findByDocument(ReportDTO personDto) throws Exception;
+    ReservationDTO updateReservation(Long id, ReservationDTO reservationDTO) throws Exception;
+
+    void deleteReservation(Long id) throws Exception;
 
 }
