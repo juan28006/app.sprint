@@ -9,6 +9,9 @@ package com.mycompany.app.Controller.Validator;
  *
  * @author CLAUDIA
  */
+import org.springframework.stereotype.Component;
+
+@Component
 public abstract class CommonsValidator {
 
     public void isValidString(String element, String value) throws Exception {

@@ -1,181 +1,272 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.app.Helpers;
 
-/**
- *
- * @author CLAUDIA
- */
-import com.mycompany.app.Dto.MachineryDTO;
-import com.mycompany.app.Dto.MachineryDTO;
-import com.mycompany.app.Dto.InventoryDTO;
-import com.mycompany.app.Dto.ReportDTO;
-import com.mycompany.app.Dto.ReservationDTO;
-import com.mycompany.app.Dto.PermissionDTO;
-import com.mycompany.app.model.Guest;
-import com.mycompany.app.model.machinery;
-import com.mycompany.app.model.Permis;
-import com.mycompany.app.model.user;
-import com.mycompany.app.model.TypeUser;
-import com.mycompany.app.model.Report;
+import com.mycompany.app.Dto.*;
+import com.mycompany.app.model.*;
 import java.sql.Date;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Setter
+@Getter
+@NoArgsConstructor
 
 public abstract class Helpers {
-    public static ReportDTO parse(user person) {
 
-        ReportDTO personDto = new ReportDTO();
-        personDto.setId(person.getId());
-        personDto.setDocument(person.getDocument());
-        personDto.setName(person.getName());
-        personDto.setCelphone(person.getCelphone());
-        return personDto;
-    }
-
-    public static user parse(ReportDTO personDto) {
-
-        user person = new user();
-        person.setId(personDto.getId());
-        person.setDocument(personDto.getDocument());
-        person.setName(personDto.getName());
-        person.setCelphone(personDto.getCelphone());
-        return person;
-    }
-
-    public static ReservationDTO parse(TypeUser user) {
+    // Conversión de User a UserDTO
+    public static UserDTO parse(User user) {
         if (user == null) {
             return null;
         }
-        ReservationDTO userDto = new ReservationDTO();
-        userDto.setId(user.getId());
-        userDto.setPassword(user.getPassword());
-        userDto.setPersonId(parse(user.getPersonId()));
-        userDto.setRol(user.getRol());
-        userDto.setUsername(user.getUsername());
-        return userDto;
+        UserDTO userDTO = new UserDTO();
+        userDTO.setId(user.getId());
+        userDTO.setName(user.getName());
+        userDTO.setPassword(user.getPassword());
+        userDTO.setTypeUser(parse(user.getTypeUser()));
+        return userDTO;
     }
 
-    public static TypeUser parse(ReservationDTO userDto) {
-        if (userDto == null) {
+    // Conversión de UserDTO a User
+    public static User parse(UserDTO userDTO) {
+        if (userDTO == null) {
             return null;
         }
-        TypeUser user = new TypeUser();
-        user.setId(userDto.getId());
-        user.setPassword(userDto.getPassword());
-        user.setPersonId(parse(userDto.getPersonId()));
-        user.setRol(userDto.getRol());
-        user.setUsername(userDto.getUsername());
+        User user = new User();
+        user.setId(userDTO.getId());
+        user.setName(userDTO.getName());
+        user.setPassword(userDTO.getPassword());
+        user.setTypeUser(parse(userDTO.getTypeUser()));
         return user;
     }
 
-    public static MachineryDTO parse(machinery invoice) {
-        if (invoice == null) {
+    // Conversión de TypeUser a TypeUserDTO
+    public static TypeUserDTO parse(TypeUser typeUser) {
+        if (typeUser == null) {
             return null;
         }
-        MachineryDTO invoiceDto = new MachineryDTO();
-        invoiceDto.setId(invoice.getId());
-        invoiceDto.setPersonId(parse(invoice.getPersonId()));
-        invoiceDto.setPartnerId(parse(invoice.getPartnerId()));
-        invoiceDto.setCreationDate(new Date(invoice.getCreationDate().getTime()));
-        invoiceDto.setAmount(invoice.getAmount());
-        invoiceDto.setStatus(invoice.isStatus());
-        return invoiceDto;
+        TypeUserDTO typeUserDTO = new TypeUserDTO();
+        typeUserDTO.setId(typeUser.getId());
+        typeUserDTO.setType(typeUser.getType());
+        return typeUserDTO;
     }
 
-    public static machinery parse(MachineryDTO invoiceDto) {
-        if (invoiceDto == null) {
+    // Conversión de TypeUserDTO a TypeUser
+    public static TypeUser parse(TypeUserDTO typeUserDTO) {
+        if (typeUserDTO == null) {
             return null;
         }
-        machinery invoice = new machinery();
-        invoice.setId(invoiceDto.getId());
-        invoice.setPersonId(parse(invoiceDto.getPersonId()));
-        invoice.setPartnerId(parse(invoiceDto.getPartnerId()));
-        invoice.setCreationDate(new Date(System.currentTimeMillis()));
-        invoice.setAmount(invoiceDto.getAmount());
-        invoice.setStatus(invoiceDto.isStatus());
-        return invoice;
+        TypeUser typeUser = new TypeUser();
+        typeUser.setId(typeUserDTO.getId());
+        typeUser.setType(typeUserDTO.getType());
+        return typeUser;
     }
 
-    // InvoiceDetail and InvoiceDetailDTO
-    public static InventoryDTO parse(Permis invoiceDetail) {
-        if (invoiceDetail == null) {
+    // Conversión de Inventory a InventoryDTO
+    public static InventoryDTO parse(Inventory inventory) {
+        if (inventory == null) {
             return null;
         }
-        InventoryDTO detailDto = new InventoryDTO();
-        detailDto.setId(invoiceDetail.getId());
-        detailDto.setInvoiceId(parse(invoiceDetail.getInvoiceId()));
-        detailDto.setItem(invoiceDetail.getItem());
-        detailDto.setDescription(invoiceDetail.getDescription());
-        detailDto.setAmount(invoiceDetail.getAmount());
-        return detailDto;
+        InventoryDTO inventoryDTO = new InventoryDTO();
+        inventoryDTO.setId(inventory.getId());
+        inventoryDTO.setEntryDate(inventory.getEntryDate());
+        inventoryDTO.setStatus(inventory.getStatus());
+        inventoryDTO.setUser(parse(inventory.getUser()));
+        return inventoryDTO;
     }
 
-    public static Permis parse(InventoryDTO detailDto) {
-        if (detailDto == null) {
+    // Conversión de InventoryDTO a Inventory
+    public static Inventory parse(InventoryDTO inventoryDTO) {
+        if (inventoryDTO == null) {
             return null;
         }
-        Permis detail = new Permis();
-        detail.setId(detailDto.getId());
-        detail.setInvoiceId(parse(detailDto.getInvoiceId()));
-        detail.setItem(detailDto.getItem());
-        detail.setDescription(detailDto.getDescription());
-        detail.setAmount(detailDto.getAmount());
-        return detail;
+        Inventory inventory = new Inventory();
+        inventory.setId(inventoryDTO.getId());
+        inventory.setEntryDate(inventoryDTO.getEntryDate());
+        inventory.setStatus(inventoryDTO.getStatus());
+        inventory.setUser(parse(inventoryDTO.getUser()));
+        return inventory;
     }
 
-    // Partner and PartnerDTO
-    public static PermissionDTO parse(Report partner) {
-        if (partner == null) {
+    // Conversión de Machinery a MachineryDTO
+    public static MachineryDTO parse(Machinery machinery) {
+        if (machinery == null) {
             return null;
         }
-
-        PermissionDTO partnerDto = new PermissionDTO();
-        partnerDto.setId(partner.getId());
-        partnerDto.setUserId(parse(partner.getUserId()));
-        partnerDto.setfundsMoney(partner.getFundsMoney());
-        partnerDto.setDateCreated(partner.getDateCreated());
-        partnerDto.setTypeSuscription(partner.getTypeSuscription());
-
-        return partnerDto;
+        MachineryDTO machineryDTO = new MachineryDTO();
+        machineryDTO.setId(machinery.getId());
+        machineryDTO.setName(machinery.getName());
+        machineryDTO.setStatus(machinery.getStatus());
+        machineryDTO.setInventory(parse(machinery.getInventory()));
+        return machineryDTO;
     }
 
-    public static Report parse(PermissionDTO partnerDto) {
-        if (partnerDto == null) {
+    // Conversión de MachineryDTO a Machinery
+    public static Machinery parse(MachineryDTO machineryDTO) {
+        if (machineryDTO == null) {
             return null;
         }
-
-        Report partner = new Report();
-        partner.setId(partnerDto.getId());
-        partner.setUserId(parse(partnerDto.getUserId()));
-        partner.setFundsMoney(partnerDto.getfundsMoney());
-        partner.setDateCreated(partnerDto.getDateCreated());
-        partner.setTypeSuscription(partnerDto.getTypeSuscription());
-
-        return partner;
+        Machinery machinery = new Machinery();
+        machinery.setId(machineryDTO.getId());
+        machinery.setName(machineryDTO.getName());
+        machinery.setStatus(machineryDTO.getStatus());
+        machinery.setInventory(parse(machineryDTO.getInventory()));
+        return machinery;
     }
 
-    public static MachineryDTO parse(Guest guest) {
-        if (guest == null) {
+    // Conversión de Reservation a ReservationDTO
+    public static ReservationDTO parse(Reservation reservation) {
+        if (reservation == null) {
             return null;
         }
-        MachineryDTO guestDto = new MachineryDTO();
-        guestDto.setId(guest.getId());
-        guestDto.setUserId(parse(guest.getUserId()));
-        guestDto.setPartnerId(parse(guest.getPartnerId()));
-        guestDto.setStatus(guest.isStatus());
-        return guestDto;
+        ReservationDTO reservationDTO = new ReservationDTO();
+        reservationDTO.setId(reservation.getId());
+        reservationDTO.setReservationDate(reservation.getReservationDate());
+        reservationDTO.setStatus(reservation.getStatus());
+        reservationDTO.setUser(parse(reservation.getUser()));
+        reservationDTO.setMachinery(parse(reservation.getMachinery()));
+        return reservationDTO;
     }
 
-    public static Guest parse(MachineryDTO guestDto) {
-        if (guestDto == null) {
+    // Conversión de ReservationDTO a Reservation
+    public static Reservation parse(ReservationDTO reservationDTO) {
+        if (reservationDTO == null) {
             return null;
         }
-        Guest guest = new Guest();
-        guest.setId(guestDto.getId());
-        guest.setUserId(parse(guestDto.getUserId()));
-        guest.setPartnerId(parse(guestDto.getPartnerId()));
-        guest.setStatus(guestDto.isStatus());
-        return guest;
+        Reservation reservation = new Reservation();
+        reservation.setId(reservationDTO.getId());
+        reservation.setReservationDate(reservationDTO.getReservationDate());
+        reservation.setStatus(reservationDTO.getStatus());
+        reservation.setUser(parse(reservationDTO.getUser()));
+        reservation.setMachinery(parse(reservationDTO.getMachinery()));
+        return reservation;
+    }
+
+    // Conversión de Report a ReportDTO
+    public static ReportDTO parse(Report report) {
+        if (report == null) {
+            return null;
+        }
+        ReportDTO reportDTO = new ReportDTO();
+        reportDTO.setId(report.getId());
+        reportDTO.setType(report.getType());
+        reportDTO.setGenerationDate(report.getGenerationDate());
+        reportDTO.setUser(parse(report.getUser()));
+        return reportDTO;
+    }
+
+    // Conversión de ReportDTO a Report
+    public static Report parse(ReportDTO reportDTO) {
+        if (reportDTO == null) {
+            return null;
+        }
+        Report report = new Report();
+        report.setId(reportDTO.getId());
+        report.setType(reportDTO.getType());
+        report.setGenerationDate(reportDTO.getGenerationDate());
+        report.setUser(parse(reportDTO.getUser())); // Asegúrate de que esto devuelva un User
+        return report;
+    }
+
+    // Conversión de Permission a PermissionDTO
+    public static PermissionDTO parse(Permission permission) {
+        if (permission == null) {
+            return null;
+        }
+        PermissionDTO permissionDTO = new PermissionDTO();
+        permissionDTO.setId(permission.getId());
+        permissionDTO.setName(permission.getName());
+        return permissionDTO;
+    }
+
+    // Conversión de PermissionDTO a Permission
+    public static Permission parse(PermissionDTO permissionDTO) {
+        if (permissionDTO == null) {
+            return null;
+        }
+        Permission permission = new Permission();
+        permission.setId(permissionDTO.getId());
+        permission.setName(permissionDTO.getName());
+        return permission;
+    }
+
+    // Conversión de UserPermission a UserPermissionDTO
+    public static UserPermissionDTO parse(UserPermission userPermission) {
+        if (userPermission == null) {
+            return null;
+        }
+        UserPermissionDTO userPermissionDTO = new UserPermissionDTO();
+        userPermissionDTO.setId(userPermission.getId());
+        userPermissionDTO.setUser(parse(userPermission.getUser()));
+        userPermissionDTO.setPermission(parse(userPermission.getPermission()));
+        return userPermissionDTO;
+    }
+
+    // Conversión de UserPermissionDTO a UserPermission
+    public static UserPermission parse(UserPermissionDTO userPermissionDTO) {
+        if (userPermissionDTO == null) {
+            return null;
+        }
+        UserPermission userPermission = new UserPermission();
+        userPermission.setId(userPermissionDTO.getId());
+        userPermission.setUser(parse(userPermissionDTO.getUser()));
+        userPermission.setPermission(parse(userPermissionDTO.getPermission()));
+        return userPermission;
+    }
+
+    // Conversión de MachineryReservation a MachineryReservationDTO
+    public static MachineryReservationDTO parse(MachineryReservation machineryReservation) {
+        if (machineryReservation == null) {
+            return null;
+        }
+        MachineryReservationDTO machineryReservationDTO = new MachineryReservationDTO();
+        machineryReservationDTO.setId(machineryReservation.getId());
+        machineryReservationDTO.setMachinery(parse(machineryReservation.getMachinery()));
+        machineryReservationDTO.setReservation(parse(machineryReservation.getReservation()));
+        return machineryReservationDTO;
+    }
+
+    // Conversión de MachineryReservationDTO a MachineryReservation
+    public static MachineryReservation parse(MachineryReservationDTO machineryReservationDTO) {
+        if (machineryReservationDTO == null) {
+            return null;
+        }
+        MachineryReservation machineryReservation = new MachineryReservation();
+        machineryReservation.setId(machineryReservationDTO.getId());
+        machineryReservation.setMachinery(parse(machineryReservationDTO.getMachinery()));
+        machineryReservation.setReservation(parse(machineryReservationDTO.getReservation()));
+        return machineryReservation;
+    }
+
+    // Conversión de Order a OrderDTO
+    public static OrderDTO parse(Order order) {
+        if (order == null)
+            return null;
+        OrderDTO dto = new OrderDTO();
+        dto.setId(order.getId());
+        dto.setOrderNumber(order.getOrderNumber());
+        dto.setOrderDate(order.getOrderDate());
+        dto.setStatus(order.getStatus());
+        dto.setCreatedBy(parse(order.getCreatedBy()));
+        dto.setMachinery(parse(order.getMachinery()));
+        dto.setQuantity(order.getQuantity());
+        dto.setUnitPrice(order.getUnitPrice());
+        dto.setTotalPrice(order.getUnitPrice() * order.getQuantity());
+        return dto;
+    }
+
+    // Conversión de OrderDTO a Order
+    public static Order parse(OrderDTO orderDTO) {
+        if (orderDTO == null)
+            return null;
+        Order order = new Order();
+        order.setId(orderDTO.getId());
+        order.setOrderNumber(orderDTO.getOrderNumber());
+        order.setOrderDate(orderDTO.getOrderDate());
+        order.setStatus(orderDTO.getStatus());
+        order.setCreatedBy(parse(orderDTO.getCreatedBy()));
+        order.setMachinery(parse(orderDTO.getMachinery()));
+        order.setQuantity(orderDTO.getQuantity());
+        order.setUnitPrice(orderDTO.getUnitPrice());
+        return order;
     }
 }

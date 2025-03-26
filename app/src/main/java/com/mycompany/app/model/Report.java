@@ -16,6 +16,7 @@ public class Report {
     private Long id;
 
     private String type; // "Uso", "Estado", "Mantenimiento"
+
     private Date generationDate;
 
     @ManyToOne

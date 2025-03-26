@@ -11,43 +11,19 @@ package com.mycompany.app.Dto;
  */
 import java.util.Date;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import com.mycompany.app.Dto.UserDTO;
+
+@Getter
+@Setter
+@NoArgsConstructor
+
 public class ReportDTO {
     private Long id;
     private String type; // "Uso", "Estado", "Mantenimiento"
     private Date generationDate;
-    private ReservationDTO user;
+    private UserDTO user;
 
-    public Long getId() {
-        return this.id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getType() {
-        return this.type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public Date getGenerationDate() {
-        return this.generationDate;
-    }
-
-    public void setGenerationDate(Date generationDate) {
-        this.generationDate = generationDate;
-    }
-
-    public ReservationDTO getUser() {
-        return this.user;
-    }
-
-    public void setUser(ReservationDTO user) {
-        this.user = user;
-    }
-
-    // Getters and Setters
 }

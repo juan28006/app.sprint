@@ -11,7 +11,6 @@ import java.util.Date;
 @Getter
 @Setter
 public class Inventory {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Id_Inventario")

@@ -1,19 +1,21 @@
 package com.mycompany.app.dao.interfaces;
 
-import com.mycompany.app.Dto.ReservationDTO;
+import com.mycompany.app.Dto.UserDTO;
+import java.util.List;
 
 public interface UserDao {
 
-    public ReservationDTO findUserById(long userId) throws Exception;
+    List<UserDTO> getAllUsers() throws Exception;
 
-    public boolean existsByUserName(ReservationDTO userDto) throws Exception;
+    UserDTO getUserById(Long id) throws Exception;
 
-    public void createUser(ReservationDTO userDto) throws Exception;
+    UserDTO createUser(UserDTO userDTO) throws Exception;
 
-    public void updateUser(ReservationDTO userDto) throws Exception;
+    UserDTO updateUser(Long id, UserDTO userDTO) throws Exception;
 
-    public void deleteUser(long id) throws Exception;
+    void deleteUser(Long id) throws Exception;
 
-    public ReservationDTO findByUserName(ReservationDTO userDto) throws Exception;
+    boolean existsByUsername(String username) throws Exception;
 
+    UserDTO findByUsername(String username) throws Exception;
 }

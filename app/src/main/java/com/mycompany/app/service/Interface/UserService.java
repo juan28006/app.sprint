@@ -1,16 +1,23 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
- */
 package com.mycompany.app.service.Interface;
 
-import com.mycompany.app.Dto.ReservationDTO;
+import java.util.List;
+import com.mycompany.app.Dto.UserDTO;
 
-/**
- *
- * @author CLAUDIA
- */
 public interface UserService {
-    public void createUser(ReservationDTO userDTO) throws Exception;
 
+    List<UserDTO> getAllUsers() throws Exception;
+
+    UserDTO getUserById(Long id) throws Exception;
+
+    UserDTO createUser(UserDTO userDTO) throws Exception; // Crear usuario genérico
+
+    UserDTO createAdmin(UserDTO userDTO) throws Exception; // Crear admin
+
+    UserDTO createEmpleado(UserDTO userDTO) throws Exception; // Crear empleado
+
+    UserDTO createCliente(UserDTO userDTO) throws Exception; // Crear cliente
+
+    UserDTO updateUser(Long id, UserDTO userDTO) throws Exception;
+
+    void deleteUser(Long id) throws Exception;
 }

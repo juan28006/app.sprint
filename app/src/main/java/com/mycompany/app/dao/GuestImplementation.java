@@ -9,7 +9,7 @@ package com.mycompany.app.dao;
  * @author CLAUDIA
  *
  */
-import com.mycompany.app.dao.interfaces.GuestDao;
+import com.mycompany.app.dao.interfaces.MachineryDao;
 import com.mycompany.app.Dto.MachineryDTO;
 import com.mycompany.app.Dto.MachineryDTO;
 import com.mycompany.app.Helpers.Helpers;
@@ -32,7 +32,7 @@ import org.springframework.stereotype.Service;
 @Setter
 @Getter
 
-public class GuestImplementation implements GuestDao {
+public class GuestImplementation implements MachineryDao {
 
     @Autowired
     private GuestRepository guestRepository;
