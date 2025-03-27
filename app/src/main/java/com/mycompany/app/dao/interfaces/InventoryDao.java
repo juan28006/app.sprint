@@ -13,4 +13,6 @@ public interface InventoryDao {
     InventoryDTO updateInventory(Long id, InventoryDTO inventoryDTO) throws Exception;
 
     void deleteInventory(Long id) throws Exception;
+
+    public InventoryDTO getInventoryByMachineryId(Long id) throws Exception;
 }

@@ -26,4 +26,7 @@ public class Inventory {
     @JoinColumn(name = "Id_Usuario", nullable = false)
     private User user; // Cambiado de usuario a user
 
+    @Column(name = "cantidad", nullable = false)
+    private Integer quantity;
+
 }

@@ -71,6 +71,7 @@ public abstract class Helpers {
         inventoryDTO.setEntryDate(inventory.getEntryDate());
         inventoryDTO.setStatus(inventory.getStatus());
         inventoryDTO.setUser(parse(inventory.getUser()));
+        inventoryDTO.setQuantity(inventory.getQuantity());
         return inventoryDTO;
     }
 

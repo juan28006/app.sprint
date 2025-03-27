@@ -497,4 +497,116 @@ public class InventoryService implements UserService, TypeUserService, Inventory
             throw new Exception("Error al eliminar maquinaria: " + e.getMessage());
         }
     }
+
+    @Override
+    public OrderDTO createOrder(OrderDTO orderDTO) throws Exception {
+        try {
+            // Validar que la maquinaria existe
+            MachineryDTO machinery = machineryDao.getMachineryById(orderDTO.getMachinery().getId());
+            if (machinery == null) {
+                throw new Exception("Maquinaria no encontrada con ID: " + orderDTO.getMachinery().getId());
+            }
+
+            // Validar que el usuario existe
+            UserDTO user = userDao.getUserById(orderDTO.getCreatedBy().getId());
+            if (user == null) {
+                throw new Exception("Usuario no encontrado con ID: " + orderDTO.getCreatedBy().getId());
+            }
+            return orderDao.createOrder(orderDTO);
+        } catch (Exception e) {
+            throw new Exception("Error al crear orden: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public OrderDTO getOrderById(Long id) throws Exception {
+        try {
+            return orderDao.getOrderById(id);
+        } catch (Exception e) {
+            throw new Exception("Error al obtener orden: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public List<OrderDTO> getAllOrders() throws Exception {
+        try {
+            return orderDao.getAllOrders();
+        } catch (Exception e) {
+            throw new Exception("Error al obtener todas las órdenes: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public List<OrderDTO> getOrdersByStatus(String status) throws Exception {
+        try {
+            return orderDao.getOrdersByStatus(status);
+        } catch (Exception e) {
+            throw new Exception("Error al obtener órdenes por estado: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public OrderDTO updateOrderStatus(Long id, String status) throws Exception {
+        try {
+            return orderDao.updateOrderStatus(id, status);
+        } catch (Exception e) {
+            throw new Exception("Error al actualizar estado de orden: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public void deleteOrder(Long id) throws Exception {
+        try {
+            orderDao.deleteOrder(id);
+        } catch (Exception e) {
+            throw new Exception("Error al eliminar orden: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public void approveOrder(Long orderId) throws Exception {
+        try {
+            OrderDTO order = orderDao.getOrderById(orderId);
+            if (order == null) {
+                throw new Exception("Orden no encontrada con ID: " + orderId);
+            }
+
+            // Actualizar estado de la orden
+            orderDao.updateOrderStatus(orderId, "Aprobada");
+
+            // Actualizar inventario (aumentar stock)
+            MachineryDTO machinery = order.getMachinery();
+            InventoryDTO inventory = inventoryDao.getInventoryByMachineryId(machinery.getId());
+
+            if (inventory == null) {
+                throw new Exception("No existe registro en inventario para esta maquinaria");
+            }
+
+            inventory.setQuantity(inventory.getQuantity() + order.getQuantity());
+            inventoryDao.updateInventory(inventory.getId(), inventory);
+        } catch (Exception e) {
+            throw new Exception("Error al aprobar orden: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public void rejectOrder(Long orderId) throws Exception {
+        try {
+            OrderDTO order = orderDao.getOrderById(orderId);
+            if (order == null) {
+                throw new Exception("Orden no encontrada con ID: " + orderId);
+            }
+
+            // Solo se puede rechazar si está pendiente
+            if (!"Pendiente".equals(order.getStatus())) {
+                throw new Exception("Solo se pueden rechazar órdenes en estado 'Pendiente'");
+            }
+
+            // Actualizar estado de la orden
+            orderDao.updateOrderStatus(orderId, "Rechazada");
+
+        } catch (Exception e) {
+            throw new Exception("Error al rechazar orden: " + e.getMessage());
+        }
+    }
 }

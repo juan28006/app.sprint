@@ -11,6 +11,7 @@ package com.mycompany.app.Controller.Validator;
  */
 import org.springframework.stereotype.Component;
 
+
 @Component
 public abstract class CommonsValidator {
 

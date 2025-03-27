@@ -3,12 +3,16 @@ package com.mycompany.app.model;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
 import java.util.Date;
+
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "orders")
 @Getter
 @Setter
+@NoArgsConstructor
 public class Order {
 
     @Id

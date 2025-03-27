@@ -15,5 +15,6 @@ public class InventoryDTO {
     private String status; // Estado del inventario: "Operativa", "En Mantenimiento", "Dañada"
     private Date entryDate; // Fecha de ingreso del inventario
     private UserDTO user; // Objeto UserDTO en lugar de un Long userId
+    private Integer quantity;
 
 }

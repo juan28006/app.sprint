@@ -56,4 +56,21 @@ public class InventoryImplementation implements InventoryDao {
         return inventory.map(Helpers::parse).orElse(null); // Usa Helpers para convertir
     }
 
+    @Override
+    public InventoryDTO getInventoryByMachineryId(Long machineryId) throws Exception {
+        try {
+            List<Inventory> inventoryList = inventoryRepository.findByMachineryId(machineryId);
+
+            if (inventoryList.isEmpty()) {
+                throw new Exception("No se encontró inventario para la maquinaria con ID: " + machineryId);
+            }
+
+            // Asumimos que solo hay un registro de inventario por maquinaria
+            Inventory inventory = inventoryList.get(0);
+            return Helpers.parse(inventory);
+
+        } catch (Exception e) {
+            throw new Exception("Error al obtener inventario por MachineryId: " + e.getMessage());
+        }
+    }
 }
