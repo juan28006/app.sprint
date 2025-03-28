@@ -8,23 +8,18 @@ import com.mycompany.app.dao.interfaces.MachineryDao;
 import com.mycompany.app.dao.interfaces.OrderDao;
 import com.mycompany.app.dao.interfaces.UserDao;
 import com.mycompany.app.dao.interfaces.TypeUserDao;
-
 import lombok.NoArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.mycompany.app.service.Interface.UserService;
 import com.mycompany.app.service.Interface.TypeUserService;
 import com.mycompany.app.service.Interface.InventoryS;
 import com.mycompany.app.service.Interface.ReservationService;
 import com.mycompany.app.service.Interface.ReportService;
 import com.mycompany.app.service.Interface.MachineryService;
-
 import java.util.List;
-
 import com.mycompany.app.service.Interface.OrderService;
 
 @Getter

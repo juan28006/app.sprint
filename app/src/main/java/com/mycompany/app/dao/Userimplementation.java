@@ -2,7 +2,6 @@ package com.mycompany.app.dao;
 
 import com.mycompany.app.Dto.UserDTO;
 import com.mycompany.app.Helpers.Helpers;
-import com.mycompany.app.Dto.TypeUserDTO;
 import com.mycompany.app.dao.interfaces.UserDao;
 import com.mycompany.app.dao.repositories.UserRepository;
 import com.mycompany.app.dao.repositories.TypeUserRepository;

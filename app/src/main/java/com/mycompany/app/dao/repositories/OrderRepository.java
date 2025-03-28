@@ -4,7 +4,6 @@ import com.mycompany.app.Dto.InventoryDTO;
 import com.mycompany.app.model.Order;
 
 import java.util.List;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

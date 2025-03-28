@@ -7,6 +7,7 @@ import java.util.List;
 
 @Repository
 public interface MachineryRepository extends JpaRepository<Machinery, Long> {
+
     List<Machinery> findByStatus(String status);
 
     List<Machinery> findByInventory_Id(Long inventoryId);

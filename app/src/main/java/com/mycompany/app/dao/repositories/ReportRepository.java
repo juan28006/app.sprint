@@ -11,6 +11,7 @@ import java.util.List;
 
 @Repository
 public interface ReportRepository extends JpaRepository<Report, Long> {
+
     List<Report> findByType(String type);
 
     List<Report> findByUserId_Id(Long userId);

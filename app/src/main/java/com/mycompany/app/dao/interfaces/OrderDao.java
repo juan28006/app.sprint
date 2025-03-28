@@ -5,7 +5,6 @@ import java.util.List;
 import com.mycompany.app.Dto.OrderDTO;
 
 public interface OrderDao {
-
     OrderDTO createOrder(OrderDTO orderDTO) throws Exception;
 
     OrderDTO getOrderById(Long id) throws Exception;

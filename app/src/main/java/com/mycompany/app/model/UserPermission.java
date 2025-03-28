@@ -10,7 +10,6 @@ import lombok.Setter;
 @Setter
 
 public class UserPermission {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -4,7 +4,6 @@ import com.mycompany.app.Dto.TypeUserDTO;
 import java.util.List;
 
 public interface TypeUserService {
-
     List<TypeUserDTO> getAllTypeUsers() throws Exception;
 
     TypeUserDTO getTypeUserById(Long id) throws Exception;

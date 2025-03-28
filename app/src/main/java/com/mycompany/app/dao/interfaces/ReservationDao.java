@@ -4,7 +4,6 @@ import com.mycompany.app.Dto.ReservationDTO;
 import java.util.List;
 
 public interface ReservationDao {
-
     List<ReservationDTO> getAllReservations() throws Exception;
 
     ReservationDTO getReservationById(Long id) throws Exception;

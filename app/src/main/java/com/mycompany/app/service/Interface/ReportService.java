@@ -14,4 +14,5 @@ public interface ReportService {
     ReportDTO updateReport(Long id, ReportDTO reportDTO) throws Exception;
 
     void deleteReport(Long id) throws Exception;
+
 }

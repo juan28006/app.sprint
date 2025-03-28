@@ -4,6 +4,7 @@ import com.mycompany.app.Dto.InventoryDTO;
 import java.util.List;
 
 public interface InventoryDao {
+
     List<InventoryDTO> getAllInventory() throws Exception;
 
     InventoryDTO getInventoryById(Long id) throws Exception;

@@ -8,6 +8,7 @@ import lombok.Setter;
 @Table(name = "Permission")
 @Getter
 @Setter
+
 public class Permission {
 
     @Id

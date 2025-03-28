@@ -5,7 +5,6 @@
 package com.mycompany.app.Controller.Validator;
 
 import com.mycompany.app.Dto.InventoryDTO;
-import com.mycompany.app.Dto.UserDTO;
 import org.springframework.stereotype.Component;
 
 @Component

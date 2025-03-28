@@ -7,6 +7,7 @@ package com.mycompany.app.Controller.Validator;
 
 import com.mycompany.app.Dto.TypeUserDTO;
 import com.mycompany.app.Dto.UserDTO;
+
 import org.springframework.stereotype.Component;
 
 @Component

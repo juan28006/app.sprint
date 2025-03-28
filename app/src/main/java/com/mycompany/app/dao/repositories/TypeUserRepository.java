@@ -7,6 +7,7 @@ import java.util.Optional;
 
 @Repository
 public interface TypeUserRepository extends JpaRepository<TypeUser, Long> {
+
     // Buscar un TypeUser por su tipo
     Optional<TypeUser> findByType(String type);
 

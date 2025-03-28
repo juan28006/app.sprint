@@ -10,6 +10,7 @@ import java.util.Date;
 @Table(name = "Reservation")
 @Getter
 @Setter
+
 public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

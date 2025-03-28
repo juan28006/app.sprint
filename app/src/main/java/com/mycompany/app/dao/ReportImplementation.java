@@ -5,15 +5,12 @@ import com.mycompany.app.dao.interfaces.ReportDao;
 import com.mycompany.app.Helpers.Helpers;
 import com.mycompany.app.dao.repositories.ReportRepository;
 import com.mycompany.app.model.Report;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

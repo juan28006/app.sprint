@@ -86,6 +86,7 @@ public abstract class Helpers {
         inventory.setStatus(inventoryDTO.getStatus());
         inventory.setUser(parse(inventoryDTO.getUser()));
         return inventory;
+
     }
 
     // Conversión de Machinery a MachineryDTO

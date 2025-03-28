@@ -10,6 +10,7 @@ import java.util.Date;
 @Table(name = "Report")
 @Getter
 @Setter
+
 public class Report {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

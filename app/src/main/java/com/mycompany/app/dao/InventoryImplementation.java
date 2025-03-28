@@ -4,6 +4,9 @@ import com.mycompany.app.Dto.InventoryDTO;
 import com.mycompany.app.dao.interfaces.InventoryDao;
 import com.mycompany.app.dao.repositories.InventoryRepository;
 import com.mycompany.app.model.Inventory;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -12,6 +15,9 @@ import java.util.stream.Collectors;
 import com.mycompany.app.Helpers.Helpers;
 
 @Service
+@NoArgsConstructor
+@Setter
+@Getter
 public class InventoryImplementation implements InventoryDao {
 
     @Autowired

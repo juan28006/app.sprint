@@ -8,6 +8,7 @@ import lombok.Setter;
 @Table(name = "Machinery")
 @Getter
 @Setter
+
 public class Machinery {
 
     @Id

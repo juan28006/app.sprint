@@ -4,6 +4,7 @@ import com.mycompany.app.Dto.ReportDTO;
 import java.util.List;
 
 public interface ReportDao {
+
     List<ReportDTO> getAllReports() throws Exception;
 
     ReportDTO getReportById(Long id) throws Exception;

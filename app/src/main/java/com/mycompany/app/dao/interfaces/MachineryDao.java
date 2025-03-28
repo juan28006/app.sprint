@@ -4,7 +4,6 @@ import com.mycompany.app.Dto.MachineryDTO;
 import java.util.List;
 
 public interface MachineryDao {
-
     List<MachineryDTO> getAllMachinery() throws Exception;
 
     MachineryDTO getMachineryById(Long id) throws Exception;
