@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import com.mycompany.app.Dto.UserDTO;
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -16,5 +17,6 @@ public class InventoryDTO {
     private Date entryDate; // Fecha de ingreso del inventario
     private UserDTO user; // Objeto UserDTO en lugar de un Long userId
     private Integer quantity;
+    private List<MachineryDTO> machineries; // Añade esta línea
 
 }

@@ -10,7 +10,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class UserDTO {
     private Long id;
-    private String name;
+    private String Username;
     private String password;
     private TypeUserDTO typeUser;
     private boolean authenticated;

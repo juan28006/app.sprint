@@ -41,7 +41,7 @@ public class Userimplementation implements UserDao {
             }
 
             // Validar nombre de usuario único
-            if (userRepository.existsByName(userDTO.getName())) {
+            if (userRepository.existsByName(userDTO.getUsername())) {
                 throw new Exception("El nombre de usuario ya está en uso");
             }
 
@@ -68,7 +68,7 @@ public class Userimplementation implements UserDao {
             }
 
             User user = userOptional.get();
-            user.setName(userDTO.getName());
+            user.setUsername(userDTO.getUsername());
             user.setPassword(userDTO.getPassword());
 
             // Actualizar TypeUser si es necesario

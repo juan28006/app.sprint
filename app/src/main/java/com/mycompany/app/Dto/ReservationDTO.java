@@ -8,8 +8,6 @@ package com.mycompany.app.Dto;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.NoArgsConstructor;
-import com.mycompany.app.Dto.UserDTO;
-import com.mycompany.app.Dto.MachineryDTO;
 import java.util.Date;
 
 @Setter

@@ -32,19 +32,19 @@ public class UserController {
         return ResponseEntity.ok(createdUser);
     }
 
-    @PostMapping("/create-admin")
+    @PostMapping("/admin")
     public ResponseEntity<UserDTO> createAdmin(@RequestBody UserDTO userDTO) throws Exception {
         UserDTO createdAdmin = userService.createAdmin(userDTO);
         return ResponseEntity.ok(createdAdmin);
     }
 
-    @PostMapping("/create-empleado")
+    @PostMapping("/employee")
     public ResponseEntity<UserDTO> createEmpleado(@RequestBody UserDTO userDTO) throws Exception {
         UserDTO createdEmployee = userService.createEmpleado(userDTO);
         return ResponseEntity.ok(createdEmployee);
     }
 
-    @PostMapping("/create-cliente")
+    @PostMapping("/clients")
     public ResponseEntity<UserDTO> createCliente(@RequestBody UserDTO userDTO) throws Exception {
         UserDTO createdClient = userService.createCliente(userDTO);
         return ResponseEntity.ok(createdClient);

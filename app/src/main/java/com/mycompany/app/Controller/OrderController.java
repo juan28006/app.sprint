@@ -38,12 +38,12 @@ public class OrderController {
         return orderService.getAllOrders();
     }
 
-    @GetMapping("/status/{status}")
+    @GetMapping("/status")
     public List<OrderDTO> getOrdersByStatus(@PathVariable String status) throws Exception {
         return orderService.getOrdersByStatus(status);
     }
 
-    @PutMapping("/{id}/status")
+    @PutMapping("/id/status")
     public ResponseEntity<OrderDTO> updateOrderStatus(
             @PathVariable Long id,
             @RequestParam String status) throws Exception {

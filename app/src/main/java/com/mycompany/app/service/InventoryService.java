@@ -1,6 +1,7 @@
 package com.mycompany.app.service;
 
 import com.mycompany.app.Dto.*;
+import com.mycompany.app.dao.TypeUserImplementation;
 import com.mycompany.app.dao.interfaces.InventoryDao;
 import com.mycompany.app.dao.interfaces.ReservationDao;
 import com.mycompany.app.dao.interfaces.ReportDao;
@@ -32,18 +33,27 @@ public class InventoryService implements UserService, TypeUserService, Inventory
     // ... (inyecciones de dependencias permanecen iguales)
     @Autowired
     private OrderDao orderDao;
+
     @Autowired
     private UserDao userDao;
+
     @Autowired
     private TypeUserDao typeUserDao;
+
     @Autowired
     private InventoryDao inventoryDao;
+
     @Autowired
     private ReservationDao reservationDao;
+
     @Autowired
     private ReportDao reportDao;
+
     @Autowired
     private MachineryDao machineryDao;
+
+    @Autowired
+    private TypeUserImplementation typeUserImplementation;
 
     // Implementación de UserService
     @Override
@@ -604,4 +614,5 @@ public class InventoryService implements UserService, TypeUserService, Inventory
             throw new Exception("Error al rechazar orden: " + e.getMessage());
         }
     }
+
 }

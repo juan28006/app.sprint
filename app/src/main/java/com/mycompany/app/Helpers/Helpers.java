@@ -3,6 +3,7 @@ package com.mycompany.app.Helpers;
 import com.mycompany.app.Dto.*;
 import com.mycompany.app.model.*;
 import java.sql.Date;
+import java.util.stream.Collectors;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,7 +21,7 @@ public abstract class Helpers {
         }
         UserDTO userDTO = new UserDTO();
         userDTO.setId(user.getId());
-        userDTO.setName(user.getName());
+        userDTO.setUsername(user.getUsername());
         userDTO.setPassword(user.getPassword());
         userDTO.setTypeUser(parse(user.getTypeUser()));
         return userDTO;
@@ -33,7 +34,7 @@ public abstract class Helpers {
         }
         User user = new User();
         user.setId(userDTO.getId());
-        user.setName(userDTO.getName());
+        user.setUsername(userDTO.getUsername());
         user.setPassword(userDTO.getPassword());
         user.setTypeUser(parse(userDTO.getTypeUser()));
         return user;
@@ -62,6 +63,7 @@ public abstract class Helpers {
     }
 
     // Conversión de Inventory a InventoryDTO
+    // Conversión de Inventory a InventoryDTO (actualizado)
     public static InventoryDTO parse(Inventory inventory) {
         if (inventory == null) {
             return null;
@@ -72,10 +74,19 @@ public abstract class Helpers {
         inventoryDTO.setStatus(inventory.getStatus());
         inventoryDTO.setUser(parse(inventory.getUser()));
         inventoryDTO.setQuantity(inventory.getQuantity());
+
+        // Mapeo de la lista de Machinery (relación bidireccional)
+        if (inventory.getMachineries() != null) {
+            inventoryDTO.setMachineries(
+                    inventory.getMachineries().stream()
+                            .map(Helpers::parse)
+                            .collect(Collectors.toList()));
+        }
+
         return inventoryDTO;
     }
 
-    // Conversión de InventoryDTO a Inventory
+    // Conversión de InventoryDTO a Inventory (actualizado)
     public static Inventory parse(InventoryDTO inventoryDTO) {
         if (inventoryDTO == null) {
             return null;
@@ -85,8 +96,17 @@ public abstract class Helpers {
         inventory.setEntryDate(inventoryDTO.getEntryDate());
         inventory.setStatus(inventoryDTO.getStatus());
         inventory.setUser(parse(inventoryDTO.getUser()));
-        return inventory;
+        inventory.setQuantity(inventoryDTO.getQuantity());
 
+        // Mapeo de la lista de Machinery (relación bidireccional)
+        if (inventoryDTO.getMachineries() != null) {
+            inventory.setMachineries(
+                    inventoryDTO.getMachineries().stream()
+                            .map(Helpers::parse)
+                            .collect(Collectors.toList()));
+        }
+
+        return inventory;
     }
 
     // Conversión de Machinery a MachineryDTO

@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "Inventory")
@@ -30,4 +31,17 @@ public class Inventory {
     @Column(name = "cantidad", nullable = false)
     private Integer quantity;
 
+    // Relacion bidireccional
+    // Navegación completa: Puedes acceder en ambas direcciones
+
+    // inventory.getMachineries()
+
+    // machinery.getInventory()Navegación completa: Puedes acceder en ambas
+    // direcciones
+
+    // inventory.getMachineries()
+
+    // machinery.getInventory()
+    @OneToMany(mappedBy = "inventory", cascade = CascadeType.ALL)
+    private List<Machinery> machineries;
 }
