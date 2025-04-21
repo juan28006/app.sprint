@@ -12,13 +12,12 @@ import lombok.Setter;
  *
  * @author CLAUDIA
  */
+// POST /api/type-users → Crear tipo de usuario
 @Getter
 @Setter
 @NoArgsConstructor
-public class CreateInvoicesDetailsRequest {
-    
+public class CreateTypeUserRequest {
+    private String guestId;
+    private long partnerId;
 
-    private String item;
-    private String description;
-    private String amount;
 }

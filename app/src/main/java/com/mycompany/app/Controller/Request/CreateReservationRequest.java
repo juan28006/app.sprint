@@ -4,7 +4,8 @@
  */
 package com.mycompany.app.Controller.Request;
 
-import java.util.List;
+import java.time.LocalDateTime;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,18 +14,14 @@ import lombok.Setter;
  *
  * @author CLAUDIA
  */
+// POST /api/reservations → Crear reserva
 @Getter
 @Setter
 @NoArgsConstructor
-public class CreateInvoicesRequest {
+public class CreateReservationRequest {
+    private Long userId;
+    private Long machineryId;
+    private LocalDateTime startDate;
+    private LocalDateTime endDate;
 
-    private String userId;
-    private String partnerId;
-    private List<CreateInvoicesDetailsRequest> details;//para crear detalles
-    /*details[{
-    item
-    description
-    amount
-
-    }]*/
 }

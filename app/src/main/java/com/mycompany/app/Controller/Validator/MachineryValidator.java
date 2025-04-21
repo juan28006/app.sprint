@@ -13,15 +13,15 @@ import org.springframework.stereotype.Component;
 @Component
 public class MachineryValidator {
 
-    public void validateMachinery(MachineryDTO machineryDTO) {
+    public void validateMachinery(MachineryDTO machineryDTO) throws Exception {
         if (machineryDTO.getName() == null || machineryDTO.getName().isEmpty()) {
-            throw new IllegalArgumentException("El nombre de la maquinaria no puede estar vacío");
+            throw new Exception("El nombre de la maquinaria no puede estar vacío");
         }
         if (machineryDTO.getStatus() == null || machineryDTO.getStatus().isEmpty()) {
-            throw new IllegalArgumentException("El estado de la maquinaria no puede estar vacío");
+            throw new Exception("El estado de la maquinaria no puede estar vacío");
         }
         if (machineryDTO.getInventory() == null || machineryDTO.getInventory().getId() == null) {
-            throw new IllegalArgumentException("El inventario asociado a la maquinaria no puede estar vacío");
+            throw new Exception("El inventario asociado a la maquinaria no puede estar vacío");
         }
     }
 }

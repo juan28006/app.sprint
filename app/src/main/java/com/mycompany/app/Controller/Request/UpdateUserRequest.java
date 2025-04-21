@@ -12,11 +12,13 @@ import lombok.Setter;
  *
  * @author CLAUDIA
  */
+
+// PUT /api/users/{id} → Actualizar usuario
 @Getter
 @Setter
 @NoArgsConstructor
-public class PayInvoicesRequest {
-
-    private long userId; // ID del usuario que realiza el pago
+public class UpdateUserRequest {
+     private String name;
+     private String cellphone;
 
 }

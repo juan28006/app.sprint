@@ -1,5 +1,6 @@
 package com.mycompany.app.service;
 
+import java.sql.Date;
 import com.mycompany.app.Dto.*;
 import com.mycompany.app.dao.TypeUserImplementation;
 import com.mycompany.app.dao.interfaces.InventoryDao;
@@ -8,13 +9,16 @@ import com.mycompany.app.dao.interfaces.ReportDao;
 import com.mycompany.app.dao.interfaces.MachineryDao;
 import com.mycompany.app.dao.interfaces.OrderDao;
 import com.mycompany.app.dao.interfaces.UserDao;
+import com.mycompany.app.dao.repositories.ReportInvoicesRepository;
 import com.mycompany.app.dao.interfaces.TypeUserDao;
+import com.mycompany.app.dao.interfaces.ReportInvoicesDao;
 import lombok.NoArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.mycompany.app.service.Interface.UserService;
+
 import com.mycompany.app.service.Interface.TypeUserService;
 import com.mycompany.app.service.Interface.InventoryS;
 import com.mycompany.app.service.Interface.ReservationService;
@@ -22,13 +26,14 @@ import com.mycompany.app.service.Interface.ReportService;
 import com.mycompany.app.service.Interface.MachineryService;
 import java.util.List;
 import com.mycompany.app.service.Interface.OrderService;
+import com.mycompany.app.service.Interface.ReportInvoicesService;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @Service
 public class InventoryService implements UserService, TypeUserService, InventoryS, ReservationService, ReportService,
-        MachineryService, OrderService {
+        MachineryService, OrderService, ReportInvoicesService {
 
     // ... (inyecciones de dependencias permanecen iguales)
     @Autowired
@@ -51,6 +56,12 @@ public class InventoryService implements UserService, TypeUserService, Inventory
 
     @Autowired
     private MachineryDao machineryDao;
+
+    @Autowired
+    private ReportInvoicesDao reportInvoicesDao;
+
+    @Autowired
+    private ReportInvoicesRepository reportInvoicesRepository;
 
     @Autowired
     private TypeUserImplementation typeUserImplementation;
@@ -615,4 +626,100 @@ public class InventoryService implements UserService, TypeUserService, Inventory
         }
     }
 
+    @Override
+    public ReportInvoicesDTO generarReporteFacturacion(OrderDTO orderDTO) throws Exception {
+        try {
+            // Validar orden
+            OrderDTO order = orderDao.getOrderById(orderDTO.getId());
+            if (order == null) {
+                throw new Exception("Orden no encontrada con ID: " + orderDTO.getId());
+            }
+            if (!"Aprobada".equals(order.getStatus())) {
+                throw new Exception("Solo se pueden generar facturas para órdenes aprobadas");
+            }
+
+            // Crear reporte
+            ReportInvoicesDTO reportDTO = new ReportInvoicesDTO();
+            reportDTO.setCodigoFactura("FACT-" + System.currentTimeMillis());
+            reportDTO.setTotal(order.getTotalPrice());
+            reportDTO.setFechaGeneracion(new java.sql.Date(System.currentTimeMillis()));
+            reportDTO.setOrder(order);
+            reportDTO.setUsuario(order.getCreatedBy());
+            reportDTO.setEstado("Pagada");
+
+            return reportInvoicesDao.createReportFacturacion(reportDTO);
+        } catch (Exception e) {
+            throw new Exception("Error al generar factura: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public List<ReportInvoicesDTO> getReportsByOrder(Long orderId) throws Exception {
+        try {
+            return reportInvoicesDao.getReportsByOrderId(orderId);
+        } catch (Exception e) {
+            throw new Exception("Error al obtener reportes por orden: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public List<ReportInvoicesDTO> getReportsByEstado(String estado) throws Exception {
+        try {
+            return reportInvoicesDao.getReportsByEstado(estado);
+        } catch (Exception e) {
+            throw new Exception("Error al obtener reportes por estado: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public List<ReportInvoicesDTO> getReportsByFechaGeneracion(Date inicio, Date fin) throws Exception {
+        try {
+            return reportInvoicesDao.getReportsByFechaGeneracionBetween(inicio, fin);
+        } catch (Exception e) {
+            throw new Exception("Error al obtener reportes por fecha: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public ReportInvoicesDTO updateReportEstado(Long id, String nuevoEstado) throws Exception {
+        try {
+            ReportInvoicesDTO reporte = reportInvoicesDao.getReportFacturacionById(id);
+            if (reporte == null) {
+                throw new Exception("Reporte no encontrado con ID: " + id);
+            }
+
+            reporte.setEstado(nuevoEstado);
+            return reportInvoicesDao.updateReportFacturacion(reporte);
+        } catch (Exception e) {
+            throw new Exception("Error al actualizar estado del reporte: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public ReportInvoicesDTO getReportByIdf(Long id) throws Exception {
+        try {
+            ReportInvoicesDTO reporte = reportInvoicesDao.getReportFacturacionById(id);
+            if (reporte == null) {
+                throw new Exception("Reporte no encontrado con ID: " + id);
+            }
+            return reporte;
+        } catch (Exception e) {
+            throw new Exception("Error al obtener reporte: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public List<ReportInvoicesDTO> getReportsByUsuario(Long userId) throws Exception {
+        try {
+            // Verificar que el usuario existe
+            UserDTO user = userDao.getUserById(userId);
+            if (user == null) {
+                throw new Exception("Usuario no encontrado con ID: " + userId);
+            }
+
+            return reportInvoicesDao.getReportsByUsuarioId(userId);
+        } catch (Exception e) {
+            throw new Exception("Error al obtener facturas por usuario: " + e.getMessage());
+        }
+    }
 }

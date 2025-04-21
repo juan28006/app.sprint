@@ -13,15 +13,15 @@ import org.springframework.stereotype.Component;
 @Component
 public class ReportValidator {
 
-    public void validateReport(ReportDTO reportDTO) {
+    public void validateReport(ReportDTO reportDTO) throws Exception {
         if (reportDTO.getType() == null || reportDTO.getType().isEmpty()) {
-            throw new IllegalArgumentException("El tipo de informe no puede estar vacío");
+            throw new Exception("El tipo de informe no puede estar vacío");
         }
         if (reportDTO.getGenerationDate() == null) {
-            throw new IllegalArgumentException("La fecha de generación no puede estar vacía");
+            throw new Exception("La fecha de generación no puede estar vacía");
         }
         if (reportDTO.getUser() == null || reportDTO.getUser().getId() == null) {
-            throw new IllegalArgumentException("El usuario asociado al informe no puede estar vacío");
+            throw new Exception("El usuario asociado al informe no puede estar vacío");
         }
     }
 }

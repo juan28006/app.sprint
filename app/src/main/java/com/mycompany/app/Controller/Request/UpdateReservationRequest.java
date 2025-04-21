@@ -4,7 +4,8 @@
  */
 package com.mycompany.app.Controller.Request;
 
-import com.mycompany.app.Dto.ReportDTO;
+import java.time.LocalDateTime;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,12 +14,13 @@ import lombok.Setter;
  *
  * @author CLAUDIA
  */
+
+// PUT /api/reservations/{id} → Actualizar reserva
 @Getter
 @Setter
 @NoArgsConstructor
-public class ManagementFundsRequest {
-
-    private Long userId;
-    private Double amount;
-
+public class UpdateReservationRequest {
+    private LocalDateTime startDate;
+    private LocalDateTime endDate;
+    private String status; // "Activa", "Cancelada"
 }

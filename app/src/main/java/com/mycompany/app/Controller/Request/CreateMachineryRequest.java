@@ -12,10 +12,13 @@ import lombok.Setter;
  *
  * @author CLAUDIA
  */
+// POST /api/machinery → Añadir maquinaria
 @Getter
 @Setter
 @NoArgsConstructor
-public class PrintAll_InvoicesRequest {
-    private Long PartnerId;
-    
+public class CreateMachineryRequest {
+    private String name;
+    private String model;
+    private String status;
+
 }

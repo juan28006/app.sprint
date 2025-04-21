@@ -12,10 +12,12 @@ import lombok.Setter;
  *
  * @author CLAUDIA
  */
+// PUT /api/inventory/{id} → Actualizar ítem
 @Getter
 @Setter
 @NoArgsConstructor
-public class RequestPromotion {
-   private String userId;
-    
+public class UpdateInventoryRequest {
+    private Integer quantity;
+    private String status; // "Disponible", "Agotado"
+
 }

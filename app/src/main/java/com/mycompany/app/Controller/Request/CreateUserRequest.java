@@ -12,19 +12,15 @@ import lombok.Setter;
  *
  * @author CLAUDIA
  */
+// POST /api/users → Crear usuario
 @Getter
 @Setter
 @NoArgsConstructor
 public class CreateUserRequest {
-    
-    public String name;
-    public String cellphone;
-    public String username;
-    public String document;
-    public String password;
-    public String partnerId; // para crear el invitdo
-    
-    
-    
-    
+
+    private String name;
+    private String username;
+    private String password;
+    private Long typeUserId; // Relación con TypeUser
+
 }

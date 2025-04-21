@@ -4,6 +4,8 @@
  */
 package com.mycompany.app.Controller.Request;
 
+import java.time.LocalDate;
+import java.util.List;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,8 +17,10 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class PrintnvoicesPartnerRequest {
-     private Long partnerId;
-    
-    
+// POST /api/reports → Generar reporte
+public class CreateReportRequest {
+    private String title;
+    private String description;
+    private LocalDate startDate;
+    private LocalDate endDate;
 }

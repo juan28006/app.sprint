@@ -12,9 +12,13 @@ import lombok.Setter;
  *
  * @author CLAUDIA
  */
+// POST /api/inventory → Crear ítem en inventario
 @Getter
 @Setter
 @NoArgsConstructor
-public class LowPartnerRequest {
-    private String userId;
+public class CreateInventoryRequest {
+    private String name;
+    private Integer quantity;
+    private Double price;
+
 }

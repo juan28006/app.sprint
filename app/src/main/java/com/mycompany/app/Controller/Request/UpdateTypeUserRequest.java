@@ -12,11 +12,11 @@ import lombok.Setter;
  *
  * @author CLAUDIA
  */
+// PUT /api/type-users/{id} → Actualizar tipo de usuario
 @Getter
 @Setter
 @NoArgsConstructor
-public class ReviewVIPRequest {
-    private long partnerId;
-    // private boolean approved;
-   
+public class UpdateTypeUserRequest {
+   private String description;
+
 }

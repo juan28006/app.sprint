@@ -12,11 +12,10 @@ import lombok.Setter;
  *
  * @author CLAUDIA
  */
+// POST /api/users/admin → Crear admin
 @Getter
 @Setter
 @NoArgsConstructor
-public class PrintInvoicesRequest {
-    private Long partnerId;
-    private Long guestId;
-    
+public class CreateAdminRequest extends CreateUserRequest {
+
 }

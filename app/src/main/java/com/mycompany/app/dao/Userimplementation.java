@@ -12,7 +12,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -41,7 +40,7 @@ public class Userimplementation implements UserDao {
             }
 
             // Validar nombre de usuario único
-            if (userRepository.existsByName(userDTO.getUsername())) {
+            if (userRepository.existsByUsername(userDTO.getUsername())) {
                 throw new Exception("El nombre de usuario ya está en uso");
             }
 
@@ -108,7 +107,7 @@ public class Userimplementation implements UserDao {
             throw new Exception("Nombre de usuario no puede estar vacío");
         }
         try {
-            return userRepository.existsByName(username);
+            return userRepository.existsByUsername(username);
         } catch (Exception e) {
             throw new Exception("Error al verificar nombre de usuario: " + e.getMessage());
         }
@@ -119,8 +118,9 @@ public class Userimplementation implements UserDao {
         if (username == null || username.trim().isEmpty()) {
             throw new Exception("Nombre de usuario no puede estar vacío");
         }
+
         try {
-            User user = userRepository.findByName(username);
+            User user = userRepository.findByUsername(username);
             if (user == null) {
                 throw new Exception("Usuario no encontrado: " + username);
             }

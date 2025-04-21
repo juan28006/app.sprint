@@ -4,6 +4,8 @@
  */
 package com.mycompany.app.Controller.Request;
 
+import java.util.List;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,13 +14,11 @@ import lombok.Setter;
  *
  * @author CLAUDIA
  */
+// POST /api/orders → Crear orden
 @Getter
 @Setter
 @NoArgsConstructor
-public class PrintInvoicesGuestRequest {
- 
-    private Long userId;
-   
-    
-    
+public class CreateOrderRequest {
+    private Long supplierId;
+    private List<OrderItemRequest> items;
 }

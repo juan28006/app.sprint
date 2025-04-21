@@ -12,11 +12,11 @@ import lombok.Setter;
  *
  * @author CLAUDIA
  */
+// PUT /api/orders/{id}/status → Actualizar estado
 @Getter
 @Setter
 @NoArgsConstructor
-public class GuestStatusRequest {
-    private String guestId;
-    private long partnerId;
-    
+public class UpdateOrderStatusRequest {
+    private String status; // "Pendiente", "Enviado", "Completado"
+
 }

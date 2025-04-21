@@ -11,7 +11,6 @@ import lombok.Setter;
 @Setter
 @Getter
 @NoArgsConstructor
-
 public abstract class Helpers {
 
     // Conversión de User a UserDTO
@@ -263,17 +262,17 @@ public abstract class Helpers {
     public static OrderDTO parse(Order order) {
         if (order == null)
             return null;
-        OrderDTO dto = new OrderDTO();
-        dto.setId(order.getId());
-        dto.setOrderNumber(order.getOrderNumber());
-        dto.setOrderDate(order.getOrderDate());
-        dto.setStatus(order.getStatus());
-        dto.setCreatedBy(parse(order.getCreatedBy()));
-        dto.setMachinery(parse(order.getMachinery()));
-        dto.setQuantity(order.getQuantity());
-        dto.setUnitPrice(order.getUnitPrice());
-        dto.setTotalPrice(order.getUnitPrice() * order.getQuantity());
-        return dto;
+        OrderDTO orderdto = new OrderDTO();
+        orderdto.setId(order.getId());
+        orderdto.setOrderNumber(order.getOrderNumber());
+        orderdto.setOrderDate(order.getOrderDate());
+        orderdto.setStatus(order.getStatus());
+        orderdto.setCreatedBy(parse(order.getCreatedBy()));
+        orderdto.setMachinery(parse(order.getMachinery()));
+        orderdto.setQuantity(order.getQuantity());
+        orderdto.setUnitPrice(order.getUnitPrice());
+        orderdto.setTotalPrice(order.getUnitPrice() * order.getQuantity());
+        return orderdto;
     }
 
     // Conversión de OrderDTO a Order
@@ -290,5 +289,34 @@ public abstract class Helpers {
         order.setQuantity(orderDTO.getQuantity());
         order.setUnitPrice(orderDTO.getUnitPrice());
         return order;
+    }
+
+    // En Helpers.java
+    public static ReportInvoicesDTO parse(ReportInvoices report) {
+        if (report == null)
+            return null;
+        ReportInvoicesDTO reportInvoicesDTO = new ReportInvoicesDTO();
+        reportInvoicesDTO.setId(report.getId());
+        reportInvoicesDTO.setCodigoFactura(report.getCodigoFactura());
+        reportInvoicesDTO.setTotal(report.getTotal());
+        reportInvoicesDTO.setFechaGeneracion(report.getFechaGeneracion());
+        reportInvoicesDTO.setOrder(parse(report.getOrder()));
+        reportInvoicesDTO.setUsuario(parse(report.getUsuario()));
+        reportInvoicesDTO.setEstado(report.getEstado());
+        return reportInvoicesDTO;
+    }
+
+    public static ReportInvoices parse(ReportInvoicesDTO dto) {
+        if (dto == null)
+            return null;
+        ReportInvoices report = new ReportInvoices();
+        report.setId(dto.getId());
+        report.setCodigoFactura(dto.getCodigoFactura());
+        report.setTotal(dto.getTotal());
+        report.setFechaGeneracion(dto.getFechaGeneracion());
+        report.setOrder(parse(dto.getOrder()));
+        report.setUsuario(parse(dto.getUsuario()));
+        report.setEstado(dto.getEstado());
+        return report;
     }
 }
