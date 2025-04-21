@@ -93,3 +93,58 @@ document.addEventListener("DOMContentLoaded", function () {
     // Mostrar la tabla con productos al cargar la página
     renderTable();
 });
+
+// Reservar maquinaria (simulado con prompt + alerta)
+document.getElementById("btnReservar").addEventListener("click", function () {
+    if (products.length === 0) {
+        alert("No hay maquinaria disponible para reservar.");
+        return;
+    }
+
+    let maquinariaDisponible = products
+        .map((p, i) => `${i + 1}. ${p.category} (${p.status})`)
+        .join("\n");
+
+    let seleccion = prompt(
+        "Selecciona el número de la maquinaria a reservar:\n" + maquinariaDisponible
+    );
+
+    let index = parseInt(seleccion) - 1;
+    if (!isNaN(index) && products[index]) {
+        alert(`Reservaste: ${products[index].category}`);
+    } else {
+        alert("Selección inválida.");
+    }
+});
+
+// Enviar notificación sobre nuevas máquinas (simulado)
+document.getElementById("btnNotificar").addEventListener("click", function () {
+    alert("✅ Notificación enviada a todos los usuarios:\n\n" +
+        "¡Nuevas máquinas han sido ingresadas al inventario!\n" +
+        "Ubicación: Zona de fuerza.\n" +
+        "Por favor, acérquese a recepción para más detalles.");
+});
+
+// Generar informe de maquinaria (simulado)
+document.getElementById("btnInforme").addEventListener("click", function () {
+    if (products.length === 0) {
+        alert("No hay datos en el inventario para generar un informe.");
+        return;
+    }
+
+    let informe = products
+        .map((p, i) =>
+            `${i + 1}. ${p.category} | Cantidad: ${p.quantity} | Estado: ${p.status}`
+        )
+        .join("\n");
+
+    alert("📄 Informe de maquinaria:\n\n" + informe);
+});
+
+// Redirigir a orden de compra
+document.getElementById("btnOrdenCompra").addEventListener("click", function () {
+    window.open(
+        "https://ultimatefitness.com.co/?gad_source=1&gclid=Cj0KCQjwqv2_BhC0ARIsAFb5Ac_LHicEj21NrvyqKqXf5riPNBpWvH0_sh8rPCfw9I5SFtAhEIY76i0aAiqQEALw_wcB",
+        "_blank"
+    );
+});

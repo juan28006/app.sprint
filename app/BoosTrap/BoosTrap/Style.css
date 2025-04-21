@@ -114,3 +114,71 @@ body {
     background: #000000;
     border-radius: 0 0 15px 15px;
 }
+
+/* Asegurar que los placeholders sean visibles */
+::placeholder {
+    color: white !important; /* Hace que el texto del placeholder sea blanco */
+    opacity: 1; /* Asegura que el color blanco sea visible */
+}
+
+/* Cambiar estilos al escribir en el input */
+.form-control:focus {
+    background: transparent !important;
+    color: white !important;
+    border-color: #3498db !important; /* Borde azul al seleccionar */
+    box-shadow: none !important; /* Elimina sombras */
+}
+
+.form-control {
+    color: white !important; /* Hace que el texto dentro del input sea blanco */
+}
+
+h2, /* Si "Iniciar Sesión" es un h2 */
+h3, /* Si "Correo Electrónico" y "Contraseña" son h3 */
+h4, /* Por si acaso otro nivel de encabezado */
+label, 
+p, 
+a {
+    color: white !important;
+}
+/* Sección de Reservas, Informes y Notificaciones */
+.section-box {
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 15px;
+    padding: 30px;
+    margin-top: 40px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.4);
+    color: white;
+}
+
+.section-box h3 {
+    color: #2ecc71 !important;
+    margin-bottom: 20px;
+}
+
+.section-box p {
+    font-size: 1rem;
+    color: #ecf0f1;
+}
+
+.section-box .btn {
+    margin-top: 15px;
+}
+
+/* Enlaces y botones específicos */
+a.btn-link {
+    color: #3498db;
+    font-weight: bold;
+    text-decoration: none;
+}
+a.btn-link:hover {
+    text-decoration: underline;
+}
+
+/* Estilo para íconos o imágenes pequeñas dentro de la sección */
+.section-icon {
+    width: 40px;
+    height: auto;
+    margin-right: 10px;
+    vertical-align: middle;
+}

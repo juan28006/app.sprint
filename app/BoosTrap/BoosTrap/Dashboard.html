@@ -1,12 +1,7 @@
-<!-- gestión del inventario. 🚀
-Este incluirá:
-✅ Tabla de equipos con nombre, categoría, cantidad y estado.
-✅ Botón para agregar productos.
-✅ Botón para eliminar productos. -->
-<!-- dashboard.html: Página principal del inventario -->
 <!-- dashboard.html: Panel de gestión del inventario -->
 <!DOCTYPE html>
 <html lang="es">
+    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,8 +12,11 @@ Este incluirá:
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">🏋️ Gym Inventario</a>
+        <div class="container-fluid  d-flex justify-content-between">
+            <a class="navbar-brand" href="#">🏋️ Gym Inventario
+            <img src="images/Inventory.png" alt="Logo" class="logo">
+            Inventory Athlon
+        </a>
             <button class="btn btn-danger" id="logout">Cerrar Sesión</button>
         </div>
     </nav>
@@ -27,11 +25,15 @@ Este incluirá:
     <div class="container mt-4">
         <h2 class="text-center mb-4">Gestión del Inventario</h2>
         
-        <!-- Botón para agregar productos -->
-        <div class="d-flex justify-content-end mb-3">
-            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addProductModal">+ Agregar Producto</button>
+        <!-- Botones principales -->
+        <div class="d-flex flex-wrap justify-content-between mb-4">
+            <button id="btnAgregar" class="btn btn-success mb-2" data-bs-toggle="modal" data-bs-target="#addProductModal">+ Agregar Producto</button>
+            <button id="btnReservar" class="btn btn-primary mb-2" data-bs-toggle="modal" data-bs-target="#reserveModal">Reservar Maquinaria</button>
+            <button id="btnInforme" class="btn btn-info mb-2" data-bs-toggle="modal" data-bs-target="#reportModal">Ver Informes</button>
+            <button id="btnNotificar" class="btn btn-warning mb-2" data-bs-toggle="modal" data-bs-target="#notificationModal">Notificación de Nuevas Máquinas</button>
+            <a id="btnOrdenCompra" class="btn btn-outline-dark mb-2" href="https://ultimatefitness.com.co/?gad_source=1&gclid=Cj0KCQjwqv2_BhC0ARIsAFb5Ac_LHicEj21NrvyqKqXf5riPNBpWvH0_sh8rPCfw9I5SFtAhEIY76i0aAiqQEALw_wcB" target="_blank">Crear Orden de Compra</a>
         </div>
-        
+
         <!-- Tabla de inventario -->
         <div class="table-responsive">
             <table class="table table-striped">
@@ -52,7 +54,7 @@ Este incluirá:
         </div>
     </div>
 
-    <!-- Modal para agregar productos -->
+    <!-- Modal: Agregar producto -->
     <div class="modal fade" id="addProductModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -63,12 +65,12 @@ Este incluirá:
                 <div class="modal-body">
                     <form id="addProductForm">
                         <div class="mb-3">
-                            <label class="form-label">Tipo Maquinaria </label>
+                            <label class="form-label">Tipo Maquinaria</label>
                             <input type="text" class="form-control" id="productCategory" placeholder="Ej: Polea" required>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Cantidad</label>
-                            <input type="number" class="form-control" id="productQuantity" placeholder="EJ:2" required>
+                            <input type="number" class="form-control" id="productQuantity" placeholder="Ej: 2" required>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Estado</label>
@@ -80,6 +82,77 @@ Este incluirá:
                         </div>
                         <button type="submit" class="btn btn-primary w-100">Guardar</button>
                     </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Reservar maquinaria -->
+    <div class="modal fade" id="reserveModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Reservar Maquinaria</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="reserveForm">
+                        <div class="mb-3">
+                            <label class="form-label">Nombre del Usuario</label>
+                            <input type="text" class="form-control" placeholder="Ej: Juan Pérez" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Maquinaria a Reservar</label>
+                            <input type="text" class="form-control" placeholder="Ej: Caminadora" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Fecha de Reserva</label>
+                            <input type="date" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn-success w-100">Reservar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Informes -->
+    <div class="modal fade" id="reportModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Informes del Sistema</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <ul>
+                        <li><strong>Maquinaria en uso:</strong> Reporte por usuario, frecuencia y estado.</li>
+                        <li><strong>Mantenimiento:</strong> Maquinarias en reparación o fuera de servicio.</li>
+                        <li><strong>Stock bajo:</strong> Equipos con cantidad crítica.</li>
+                    </ul>
+                    <p class="text-muted">*Estos informes ayudan en la toma de decisiones y mantenimiento preventivo.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Notificación de nuevas máquinas -->
+    <div class="modal fade" id="notificationModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Notificación de Nuevas Máquinas</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Se han agregado nuevas máquinas al inventario. Los usuarios recibirán una notificación con los siguientes detalles:</p>
+                    <ul>
+                        <li>Nombre de la máquina</li>
+                        <li>Ubicación dentro del gimnasio</li>
+                        <li>Fecha de disponibilidad</li>
+                        <li>Pasos para solicitar uso o reserva</li>
+                    </ul>
+                    <p class="text-success">¡Notificación programada para ser enviada automáticamente!</p>
                 </div>
             </div>
         </div>
