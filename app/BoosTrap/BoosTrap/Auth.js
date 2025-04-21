@@ -77,12 +77,4 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Cerrar sesión
-    const logoutButton = document.getElementById("logout");
-    if (logoutButton) {
-        logoutButton.addEventListener("click", function () {
-            localStorage.removeItem("loggedInUser");
-            window.location.href = "Inicio-Sesion.html";
-        });
-    }
 });

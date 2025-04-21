@@ -1,19 +1,28 @@
 /* styles.css: Estilos modernos y atractivos */
 
 body {
-    background: #1e1e1e;
+    background-image: url(images/image.png);
+        /* background: #0d0e0d; */
     color: #ffffff;
     font-family: 'Poppins', sans-serif;
+    background-size: cover;/* La imagen cubre todo el fondo */
+    background-position: center;
+    background-repeat: no-repeat;/* Evita que la imagen se repita */
+    margin: 0;/* Elimina el margen predeterminado del body */
+    padding: 0;/* Elimina el padding predeterminado del body */
+    line-height: 1.6; /* Espaciado entre líneas para mejor legibilidad */
+    min-height: 100vh;/* Asegura que el body ocupe al menos el 100% del viewport */
+    flex-direction: column;/* Organiza el contenido en columna */
+    align-items: center; /* Centra el contenido horizontalmente */
+    text-align: center; /* Alinea el texto al centro */
+    
 }
 
-/* Contenedor principal */
-.container {
-    max-width: 1000px;
-    margin-top: 20px;
-    padding: 20px;
-    background: #2c3e50;
-    border-radius: 15px;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+
+.logo{
+    height: 150px; /* Ajusta la altura según necesites */
+    width: auto;  /* Mantiene la proporción */
+    margin-right: 10px; /* Espacio entre la imagen y el texto */
 }
 
 /* Barra de navegación */
@@ -29,7 +38,7 @@ body {
 }
 .navbar a {
     color: white !important;
-    font-size: 1.2rem;
+    font-size: 30px;
 }
 
 /* Botones */
@@ -50,7 +59,7 @@ body {
     border: none;
 }
 .btn-success {
-    background: #2ecc71;
+    background: #3498db;
     color: white;
     border: none;
 }
@@ -61,12 +70,9 @@ body {
 
 /* Tarjetas */
 .card {
-    border: none;
-    border-radius: 15px;
-    box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.2);
-    padding: 20px;
-    background: #2c3e50;
-    color: white;
+    background: transparent !important; /* Hace el fondo transparente */
+    box-shadow: none !important; /* Elimina la sombra */
+    border: none !important; /* Elimina los bordes */
 }
 
 /* Tablas */
@@ -99,10 +105,10 @@ body {
 /* Formularios */
 .form-control, .form-select {
     border-radius: 10px;
-    border: 1px solid #bbb;
+    border: 2px solid white !important; /* Agrega un borde blanco */
     padding: 10px;
-    background: #f0f0f0;
-    color: #000;
+    background: transparent !important; /* Hace el fondo transparente */
+    color: white !important; /* Mantiene el texto en blanco */
 }
 
 /* Pie de página */
@@ -140,6 +146,7 @@ label,
 p, 
 a {
     color: white !important;
+<<<<<<< HEAD
 }
 /* Sección de Reservas, Informes y Notificaciones */
 .section-box {
@@ -181,4 +188,6 @@ a.btn-link:hover {
     height: auto;
     margin-right: 10px;
     vertical-align: middle;
+=======
+>>>>>>> origin/feature
 }
