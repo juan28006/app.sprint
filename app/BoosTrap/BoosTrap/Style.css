@@ -1,0 +1,184 @@
+/* styles.css: Estilos modernos y atractivos */
+
+body {
+    background: #1e1e1e;
+    color: #ffffff;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Contenedor principal */
+.container {
+    max-width: 1000px;
+    margin-top: 20px;
+    padding: 20px;
+    background: #2c3e50;
+    border-radius: 15px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Barra de navegación */
+.navbar {
+    background: linear-gradient(135deg, #000000, #2c3e50);
+    padding: 15px;
+    border-radius: 0 0 15px 15px;
+}
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.6rem;
+    color: #2ecc71;
+}
+.navbar a {
+    color: white !important;
+    font-size: 1.2rem;
+}
+
+/* Botones */
+.btn {
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+    padding: 10px 15px;
+    font-weight: bold;
+}
+.btn-primary {
+    background: #3498db;
+    color: white;
+    border: none;
+}
+.btn-danger {
+    background: #e74c3c;
+    color: white;
+    border: none;
+}
+.btn-success {
+    background: #2ecc71;
+    color: white;
+    border: none;
+}
+.btn:hover {
+    transform: scale(1.07);
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Tarjetas */
+.card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    background: #2c3e50;
+    color: white;
+}
+
+/* Tablas */
+.table {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+    background: #2c3e50;
+    color: white;
+}
+.table thead {
+    background: #000000;
+    color: white;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+}
+.table tbody tr:hover {
+    background: rgba(52, 152, 219, 0.2);
+}
+
+/* Modales */
+.modal-content {
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    background: #2c3e50;
+    color: white;
+}
+
+/* Formularios */
+.form-control, .form-select {
+    border-radius: 10px;
+    border: 1px solid #bbb;
+    padding: 10px;
+    background: #f0f0f0;
+    color: #000;
+}
+
+/* Pie de página */
+.footer {
+    text-align: center;
+    padding: 15px;
+    font-size: 1rem;
+    color: white;
+    background: #000000;
+    border-radius: 0 0 15px 15px;
+}
+
+/* Asegurar que los placeholders sean visibles */
+::placeholder {
+    color: white !important; /* Hace que el texto del placeholder sea blanco */
+    opacity: 1; /* Asegura que el color blanco sea visible */
+}
+
+/* Cambiar estilos al escribir en el input */
+.form-control:focus {
+    background: transparent !important;
+    color: white !important;
+    border-color: #3498db !important; /* Borde azul al seleccionar */
+    box-shadow: none !important; /* Elimina sombras */
+}
+
+.form-control {
+    color: white !important; /* Hace que el texto dentro del input sea blanco */
+}
+
+h2, /* Si "Iniciar Sesión" es un h2 */
+h3, /* Si "Correo Electrónico" y "Contraseña" son h3 */
+h4, /* Por si acaso otro nivel de encabezado */
+label, 
+p, 
+a {
+    color: white !important;
+}
+/* Sección de Reservas, Informes y Notificaciones */
+.section-box {
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 15px;
+    padding: 30px;
+    margin-top: 40px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.4);
+    color: white;
+}
+
+.section-box h3 {
+    color: #2ecc71 !important;
+    margin-bottom: 20px;
+}
+
+.section-box p {
+    font-size: 1rem;
+    color: #ecf0f1;
+}
+
+.section-box .btn {
+    margin-top: 15px;
+}
+
+/* Enlaces y botones específicos */
+a.btn-link {
+    color: #3498db;
+    font-weight: bold;
+    text-decoration: none;
+}
+a.btn-link:hover {
+    text-decoration: underline;
+}
+
+/* Estilo para íconos o imágenes pequeñas dentro de la sección */
+.section-icon {
+    width: 40px;
+    height: auto;
+    margin-right: 10px;
+    vertical-align: middle;
+}
