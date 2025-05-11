@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reservar Maquinaria Gym</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="Style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center" href="Reservar_Maquinaria.html">
+                <img src="images/GymLogo.jpeg" alt="Logo Inventory Athlon" width="40" height="40" class="me-2">
+                <span>Inventory Athlon</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-3 me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="Dashboard.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="Agregar_Productos.html">Agregar Productos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Reservar_Maquinaria.html" >Reservar Maquinaria</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Informes.html"">Informes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Informes_facturacion.html">Informes facturación</a>
+                    </li>
+                </ul>
+                <button class="btn btn-danger fw-bold">Cerrar Sesión</button>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="container mt-4">
+        <h2 class="text-center mb-4">Reservar Maquinaria</h2>
+        
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        Maquinaria Disponible
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Nombre</th>
+                                        <th>Estado</th>
+                                        <th>Disponibilidad</th>
+                                        <th>Acción</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="maquinariaTable">
+                                    <!-- Los datos se cargarán dinámicamente aquí -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <div id="noMaquinaria" class="alert alert-info d-none">
+                            No hay maquinaria disponible para reservar.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Nueva sección: Mis Reservas -->
+        <div class="row mt-4">
+            <div class="col-md-10 mx-auto">
+                <div class="card">
+                    <div class="card-header bg-success text-white">
+                        Reservas
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Maquinaria</th>
+                                        <th>Fecha</th>
+                                        <th>Hora</th>
+                                        <th>Estado</th>
+                                        <th>Acción</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="reservasTable">
+                                    <!-- Las reservas se cargarán dinámicamente aquí -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <div id="noReservas" class="alert alert-info">
+                            No tienes reservas activas.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal: Confirmación de Reserva -->
+    <div class="modal fade" id="reservaModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Confirmar Reserva</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="reservaForm">
+                        <input type="hidden" id="maquinariaId">
+                        <div class="mb-3">
+                            <label class="form-label">Maquinaria</label>
+                            <input type="text" class="form-control" id="maquinariaNombre" readonly>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Fecha de Reserva</label>
+                            <input type="date" class="form-control" id="fechaReserva" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Hora</label>
+                            <select class="form-control" id="horaReserva" required>
+                                <option value="">Seleccione una hora</option>
+                                <option>8:00 AM - 9:00 AM</option>
+                                <option>9:00 AM - 10:00 AM</option>
+                                <option>10:00 AM - 11:00 AM</option>
+                                <option>11:00 AM - 12:00 PM</option>
+                                <option>12:00 PM - 1:00 PM</option>
+                                <option>1:00 PM - 2:00 PM</option>
+                                <option>2:00 PM - 3:00 PM</option>
+                                <option>3:00 PM - 4:00 PM</option>
+                                <option>4:00 PM - 5:00 PM</option>
+                                <option>5:00 PM - 6:00 PM</option>
+                                <option>6:00 PM - 7:00 PM</option>
+                                <option>7:00 PM - 8:00 PM</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-success w-100">Confirmar Reserva</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal: Cancelar Reserva -->
+    <div class="modal fade" id="cancelarModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Cancelar Reserva</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+                    <p>¿Estás seguro de que deseas cancelar esta reserva?</p>
+                    <input type="hidden" id="cancelarReservaId">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No, mantener</button>
+                    <button type="button" class="btn btn-danger" id="confirmarCancelar">Sí, cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="Inventory.js"></script>
+</body>
+</html>
