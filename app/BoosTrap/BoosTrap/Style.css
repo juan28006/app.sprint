@@ -1,8 +1,16 @@
 /* styles.css: Estilos modernos y atractivos */
 
 body {
-    background: #1e1e1e;
-    color: #ffffff;
+    background-image: url("./images/fondoGym1.jpg");
+    background-color: #1e1e1e;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    backdrop-filter: blur(3px);
+    overflow-x: hidden;
     font-family: 'Poppins', sans-serif;
     
 }
@@ -100,7 +108,7 @@ body {
 /* Formularios */
 .form-control, .form-select {
     border-radius: 10px;
-    border: 1px solid #bbb;
+    border: 1px solid #0f0f0f;
     padding: 10px;
     background: #f0f0f0;
     color: #000;
@@ -125,13 +133,13 @@ body {
 /* Cambiar estilos al escribir en el input */
 .form-control:focus {
     background: transparent !important;
-    color: white !important;
+    color: rgb(4, 4, 4) !important;
     border-color: #3498db !important; /* Borde azul al seleccionar */
     box-shadow: none !important; /* Elimina sombras */
 }
 
 .form-control {
-    color: white !important; /* Hace que el texto dentro del input sea blanco */
+    color: rgb(2, 2, 2) !important; /* Hace que el texto dentro del input sea blanco */
 }
 
 h2, /* Si "Iniciar Sesión" es un h2 */
@@ -142,6 +150,7 @@ p,
 a {
     color: white !important;
 }
+
 /* Sección de Reservas, Informes y Notificaciones */
 .section-box {
     background: rgba(0, 0, 0, 0.7);
